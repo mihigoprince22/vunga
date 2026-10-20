@@ -324,23 +324,23 @@ const QuizModal: React.FC = () => {
     <AnimatePresence>
       {isQuizOpen && (
         <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4 sm:p-6">
-          {/* Backdrop */}
+          {/* Separate Backdrop Layer */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={closeQuiz}
-            className="fixed inset-0 bg-black/80 backdrop-blur-md"
+            className="fixed inset-0 z-40 bg-black/75 backdrop-blur-sm"
             aria-hidden="true"
           />
 
-          {/* Modal Container */}
+          {/* Foreground Modal Container */}
           <motion.div
-            initial={{ scale: 0.94, opacity: 0, y: 15 }}
+            initial={{ scale: 0.95, opacity: 0, y: 15 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.95, opacity: 0, y: 15 }}
             transition={{ type: 'spring', damping: 28, stiffness: 300 }}
-            className="relative w-full max-w-2xl bg-[#141515] border border-[#B86B43]/40 shadow-2xl rounded-2xl text-[#EAE8E1] overflow-hidden z-10 flex flex-col my-auto max-h-[92vh]"
+            className="relative z-50 w-full max-w-2xl bg-[#1C1F1E] border border-[#B86B43]/40 shadow-2xl rounded-3xl text-[#EAE8E1] overflow-hidden flex flex-col my-auto max-h-[92vh]"
             role="dialog"
             aria-modal="true"
             onClick={(e) => e.stopPropagation()}
@@ -417,10 +417,10 @@ const QuizModal: React.FC = () => {
                             key={g.id}
                             type="button"
                             onClick={() => setSelectedGoal(g.id)}
-                            className={`w-full p-4 sm:p-5 text-left border rounded-xl flex items-center gap-4 transition-all duration-200 cursor-pointer ${
+                            className={`w-full p-4 sm:p-5 text-left rounded-2xl flex items-center gap-4 transition-all duration-200 cursor-pointer ${
                               isSelected
-                                ? 'border-[#B86B43] bg-[#282B29] shadow-lg ring-1 ring-[#B86B43]'
-                                : 'border-[#EAE8E1]/15 bg-[#1C1E1D] hover:bg-[#282B29] hover:border-[#B86B43]/60'
+                                ? 'border border-[#B86B43] bg-[#333835] shadow-lg ring-1 ring-[#B86B43]'
+                                : 'bg-[#262A28] hover:bg-[#303532] text-[#EAE8E1] border border-[#EAE8E1]/15 hover:border-[#B86B43]'
                             }`}
                           >
                             <div
@@ -483,10 +483,10 @@ const QuizModal: React.FC = () => {
                             key={t.id}
                             type="button"
                             onClick={() => setSelectedTiming(t.id)}
-                            className={`w-full p-4 sm:p-5 text-left border rounded-xl flex items-center gap-4 transition-all duration-200 cursor-pointer ${
+                            className={`w-full p-4 sm:p-5 text-left rounded-2xl flex items-center gap-4 transition-all duration-200 cursor-pointer ${
                               isSelected
-                                ? 'border-[#B86B43] bg-[#282B29] shadow-lg ring-1 ring-[#B86B43]'
-                                : 'border-[#EAE8E1]/15 bg-[#1C1E1D] hover:bg-[#282B29] hover:border-[#B86B43]/60'
+                                ? 'border border-[#B86B43] bg-[#333835] shadow-lg ring-1 ring-[#B86B43]'
+                                : 'bg-[#262A28] hover:bg-[#303532] text-[#EAE8E1] border border-[#EAE8E1]/15 hover:border-[#B86B43]'
                             }`}
                           >
                             <div
@@ -615,8 +615,8 @@ const QuizModal: React.FC = () => {
                 )}
 
                 {step === 1 && (
-                  <div className="font-sans text-xs text-[#EAE8E1]/50 uppercase tracking-widest">
-                    Kinigi Botanical Engine &bull; 2,400m
+                  <div className="font-sans text-[11px] text-[#D4AF6A]/80 uppercase tracking-widest font-medium">
+                    CULTIVATED AT 2,400M &bull; KINIGI, MUSANZE &mdash; RWANDA
                   </div>
                 )}
 

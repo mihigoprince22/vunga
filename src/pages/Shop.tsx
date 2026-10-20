@@ -154,9 +154,9 @@ const Shop: React.FC = () => {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-kinigi-mist/10 border border-kinigi-mist/20 text-spore-gold text-[11px] font-mono tracking-widest uppercase mb-4"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EAE8E1]/10 border border-[#EAE8E1]/20 text-[#D4AF6A] text-[11px] font-sans font-semibold tracking-widest uppercase mb-4"
           >
-            <Sparkles className="w-3.5 h-3.5 text-spore-gold" />
+            <Sparkles className="w-3.5 h-3.5 text-[#D4AF6A]" />
             <span>Kinigi Volcanic Altitude · 2,400m Substrate</span>
           </motion.div>
 
@@ -182,20 +182,20 @@ const Shop: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="mt-6 flex flex-wrap items-center justify-center gap-4 text-xs font-mono text-kinigi-mist/70 tracking-wider"
+            className="mt-6 flex flex-wrap items-center justify-center gap-4 text-xs font-sans font-medium text-[#EAE8E1]/80 tracking-wider"
           >
             <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-verdigris-bamboo" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#527361]" />
               100% Fruiting Bodies
             </span>
-            <span className="text-kinigi-mist/30">·</span>
+            <span className="text-white/30">·</span>
             <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-oxidized-copper" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#B86B43]" />
               Zero Grain Starch Fillers
             </span>
-            <span className="text-kinigi-mist/30">·</span>
+            <span className="text-white/30">·</span>
             <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-spore-gold" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF6A]" />
               Hand-Harvested Musanze
             </span>
           </motion.div>
@@ -205,11 +205,11 @@ const Shop: React.FC = () => {
       {/* =========================================================================
           2. DUAL FILTER SYSTEM
       ========================================================================= */}
-      <section className="sticky top-0 z-30 bg-kinigi-paper/95 backdrop-blur-md border-b border-volcanic-ash/10 py-5 px-4 sm:px-6 shadow-xs">
+      <section className="sticky top-0 z-30 bg-[#F4F1EA]/95 backdrop-blur-md border-b border-[#222423]/10 py-5 px-4 sm:px-6 shadow-xs">
         <div className="max-w-7xl mx-auto space-y-4">
           {/* Filter Row 1: Category Pills */}
           <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto pb-1 scrollbar-none">
-            <span className="text-[11px] font-mono uppercase tracking-wider text-volcanic-ash/50 mr-1 shrink-0 hidden sm:inline">
+            <span className="text-[11px] font-sans uppercase tracking-wider text-[#222423]/60 mr-1 shrink-0 hidden sm:inline font-semibold">
               Category:
             </span>
             {categoryOptions.map((cat) => {
@@ -218,18 +218,18 @@ const Shop: React.FC = () => {
                 <button
                   key={cat.id}
                   onClick={() => setSelectedCategory(cat.id)}
-                  className={`px-4 sm:px-5 py-2.5 rounded-full text-xs font-medium uppercase tracking-wider transition-all duration-200 shrink-0 flex items-center gap-2 cursor-pointer ${
+                  className={`px-4 sm:px-5 py-2.5 rounded-full text-xs font-sans font-semibold uppercase tracking-wider transition-all duration-200 shrink-0 flex items-center gap-2 cursor-pointer ${
                     isActive
-                      ? 'bg-volcanic-ash text-kinigi-mist shadow-sm ring-1 ring-volcanic-ash'
-                      : 'bg-kinigi-paper text-volcanic-ash border border-volcanic-ash/20 hover:border-volcanic-ash/60 hover:bg-kinigi-mist/50'
+                      ? 'bg-[#222423] text-[#EAE8E1] shadow-sm'
+                      : 'bg-white text-[#222423] border border-[#222423]/15 hover:border-[#222423]/50 hover:bg-[#EAE8E1]/50'
                   }`}
                 >
                   <span>{cat.label}</span>
                   <span
-                    className={`text-[10px] font-mono px-1.5 py-0.5 rounded-full ${
+                    className={`text-[10px] font-sans font-bold px-1.5 py-0.5 rounded-full ${
                       isActive
-                        ? 'bg-kinigi-mist/20 text-kinigi-mist'
-                        : 'bg-volcanic-ash/10 text-volcanic-ash/70'
+                        ? 'bg-white/20 text-white'
+                        : 'bg-[#222423]/10 text-[#222423]/70'
                     }`}
                   >
                     {cat.count}
@@ -241,17 +241,17 @@ const Shop: React.FC = () => {
 
           {/* Filter Row 2: Benefit Pills */}
           <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
-            <span className="text-[11px] font-mono uppercase tracking-wider text-volcanic-ash/50 mr-1 shrink-0 hidden sm:inline">
+            <span className="text-[11px] font-sans uppercase tracking-wider text-[#222423]/60 mr-1 shrink-0 hidden sm:inline font-semibold">
               Benefit:
             </span>
 
             {/* Clear / All benefits button */}
             <button
               onClick={() => setSelectedBenefit('all')}
-              className={`px-3 py-1.5 rounded-sm text-xs font-mono tracking-wide transition-all shrink-0 cursor-pointer ${
+              className={`px-4 py-2 rounded-full text-xs font-sans font-medium tracking-wide transition-all shrink-0 cursor-pointer ${
                 selectedBenefit === 'all'
-                  ? 'bg-volcanic-ash/10 text-volcanic-ash font-semibold'
-                  : 'text-volcanic-ash/60 hover:text-volcanic-ash'
+                  ? 'bg-[#222423]/15 text-[#222423] font-semibold'
+                  : 'text-[#222423]/60 hover:text-[#222423]'
               }`}
             >
               All Benefits
@@ -263,13 +263,13 @@ const Shop: React.FC = () => {
                 <button
                   key={benefit.id}
                   onClick={() => handleBenefitClick(benefit.id)}
-                  className={`px-3.5 py-1.5 rounded-sm text-xs font-mono tracking-wide transition-all duration-150 shrink-0 cursor-pointer shadow-2xs ${
+                  className={`px-4 py-2 rounded-full text-xs font-sans font-medium tracking-wide transition-all duration-150 shrink-0 cursor-pointer ${
                     isActive
-                      ? benefit.activeColorClass
-                      : `${benefit.colorClass} bg-kinigi-paper text-volcanic-ash border-y border-r border-volcanic-ash/15 hover:border-volcanic-ash/40 hover:bg-kinigi-mist/40`
+                      ? 'bg-[#222423] text-[#EAE8E1] shadow-xs'
+                      : 'bg-white text-[#222423] border border-[#222423]/15 hover:border-[#222423]/40'
                   }`}
                 >
-                  {benefit.label}
+                  <span>{benefit.label}</span>
                   {isActive && <span className="ml-1.5 opacity-70">✕</span>}
                 </button>
               );
@@ -283,15 +283,15 @@ const Shop: React.FC = () => {
                     setSelectedCategory('all');
                     setSelectedBenefit('all');
                   }}
-                  className="text-[11px] font-mono text-oxidized-copper hover:underline flex items-center gap-1 cursor-pointer"
+                  className="text-xs font-sans font-semibold text-[#B86B43] hover:underline flex items-center gap-1 cursor-pointer"
                 >
-                  <RotateCcw className="w-3 h-3" />
+                  <RotateCcw className="w-3.5 h-3.5" />
                   <span>Reset Filters</span>
                 </button>
               )}
-              <span className="text-xs font-mono text-volcanic-ash/60 whitespace-nowrap">
+              <span className="text-xs font-sans text-[#222423]/70 whitespace-nowrap">
                 Showing{' '}
-                <strong className="text-volcanic-ash font-bold">{filteredProducts.length}</strong> of{' '}
+                <strong className="text-[#222423] font-bold">{filteredProducts.length}</strong> of{' '}
                 {products.length} formulations
               </span>
             </div>
@@ -305,13 +305,13 @@ const Shop: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         {filteredProducts.length === 0 ? (
           <div className="py-24 text-center max-w-md mx-auto">
-            <div className="w-16 h-16 rounded-full bg-volcanic-ash/5 mx-auto flex items-center justify-center text-volcanic-ash/40 mb-4">
+            <div className="w-16 h-16 rounded-full bg-[#222423]/5 mx-auto flex items-center justify-center text-[#222423]/40 mb-4">
               <ShoppingBag className="w-7 h-7" />
             </div>
-            <h3 className="font-serif text-2xl font-bold text-volcanic-ash mb-2">
+            <h3 className="font-serif text-2xl font-bold text-[#222423] mb-2">
               No matching harvests
             </h3>
-            <p className="font-sans text-sm text-volcanic-ash/70 mb-6">
+            <p className="font-sans text-sm text-[#222423]/70 mb-6">
               We could not find any apothecary products matching both your selected category and
               benefit filter.
             </p>
@@ -320,7 +320,7 @@ const Shop: React.FC = () => {
                 setSelectedCategory('all');
                 setSelectedBenefit('all');
               }}
-              className="px-6 py-3 bg-volcanic-ash text-kinigi-mist text-xs font-mono uppercase tracking-widest hover:bg-oxidized-copper transition-colors cursor-pointer"
+              className="px-6 py-3 rounded-full bg-[#222423] text-[#EAE8E1] text-xs font-sans font-semibold uppercase tracking-widest hover:bg-[#B86B43] transition-colors cursor-pointer shadow-md"
             >
               Clear All Filters
             </button>
@@ -328,13 +328,20 @@ const Shop: React.FC = () => {
         ) : (
           <motion.div
             layout
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-center"
           >
             <AnimatePresence>
               {filteredProducts.map((product) => {
-                const isHovered = hoveredCardId === product.id;
                 const displayName =
                   language === 'RW' ? product.nameRw : language === 'FR' ? product.nameFr : product.name;
+                const formatLabel =
+                  product.formats?.[0] || product.weight?.split(' ')[0] || (product.isFresh ? '500g Fresh' : '60g Extract');
+                const badgeText =
+                  product.id === 1 || product.id === 4
+                    ? 'BESTSELLER'
+                    : product.isFresh
+                    ? "CHEF'S RESERVE"
+                    : '100% FRUITING BODY';
 
                 return (
                   <motion.div
@@ -346,97 +353,78 @@ const Shop: React.FC = () => {
                     transition={{ duration: 0.35, ease: 'easeOut' }}
                     onMouseEnter={() => setHoveredCardId(product.id)}
                     onMouseLeave={() => setHoveredCardId(null)}
-                    className="group bg-kinigi-paper border border-volcanic-ash/15 flex flex-col justify-between overflow-hidden rounded-xl transition-all duration-300 ease-out hover:scale-[1.02] hover:shadow-xl hover:border-volcanic-ash/30"
+                    className="group relative flex flex-col justify-between rounded-2xl bg-white border border-[#222423]/8 shadow-[0_8px_30px_rgb(34,36,35,0.06)] hover:shadow-[0_20px_40px_rgb(184,107,67,0.14)] p-4 transition-all duration-300 hover:-translate-y-1 text-[#222423]"
                   >
-                    <Link to={`/shop/${product.slug}`} className="flex flex-col flex-1 block">
-                      {/* 4:5 Aspect Ratio Image Container with Framer Motion Crossfade */}
-                      <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-[#141515]">
-                        {/* Default Image */}
-                        <motion.img
+                    <Link to={`/shop/${product.slug}`} className="flex flex-col flex-1">
+                      {/* 4:5 Aspect Ratio Image Container */}
+                      <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-[#1A1C1B] mb-3">
+                        <img
                           src={product.image}
                           alt={displayName}
-                          animate={{ opacity: isHovered ? 0 : 1 }}
-                          transition={{ duration: 0.4, ease: 'easeInOut' }}
-                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                           loading="lazy"
                         />
-
-                        {/* Hover Image Crossfade */}
-                        <motion.img
-                          src={product.hoverImage || product.image}
-                          alt={`${displayName} alternate view`}
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: isHovered ? 1 : 0 }}
-                          transition={{ duration: 0.4, ease: 'easeInOut' }}
-                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                          loading="lazy"
-                        />
-
-                        {/* Top-Left Badge: FRESH HARVEST */}
-                        {product.isFresh && (
-                          <div className="absolute top-3.5 left-3.5 z-10 bg-verdigris-bamboo text-kinigi-mist text-[10px] font-mono tracking-widest uppercase px-2.5 py-1 rounded-xs shadow-sm font-semibold flex items-center gap-1.5">
-                            <span className="w-1.5 h-1.5 rounded-full bg-kinigi-mist animate-pulse" />
-                            <span>Fresh Harvest</span>
-                          </div>
+                        {product.hoverImage && (
+                          <img
+                            src={product.hoverImage}
+                            alt={`${displayName} alternate view`}
+                            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0 group-hover:opacity-100 group-hover:scale-105"
+                            loading="lazy"
+                          />
                         )}
 
-                        {/* Top-Right Badge: SUBSCRIBE & SAVE 15% */}
-                        {product.isSubscribable && (
-                          <div className="absolute top-3.5 right-3.5 z-10 bg-oxidized-copper text-kinigi-mist text-[10px] font-mono tracking-wider uppercase px-2.5 py-1 rounded-xs shadow-sm font-semibold">
-                            Subscribe & Save 15%
-                          </div>
-                        )}
+                        {/* Top-Left Pill Badge */}
+                        <span className="absolute top-3 left-3 z-10 rounded-full bg-[#141515]/90 backdrop-blur-md text-[#EAE8E1] px-3 py-1 text-[10px] font-sans font-semibold uppercase tracking-[0.12em] border border-[#B86B43]/40 shadow-sm">
+                          {badgeText}
+                        </span>
 
-                        {/* Bottom-left Beta-Glucans Tag if present */}
-                        {product.betaGlucans && (
-                          <div className="absolute bottom-3 left-3 z-10 bg-volcanic-deep/85 backdrop-blur-xs text-kinigi-mist text-[10px] font-mono tracking-wide px-2.5 py-1 rounded-xs">
-                            {product.betaGlucans}
-                          </div>
-                        )}
+                        {/* Top-Right Format Pill */}
+                        <span className="absolute top-3 right-3 z-10 rounded-full bg-white/95 backdrop-blur-md text-[#222423] px-2.5 py-1 text-[10px] font-sans font-semibold uppercase tracking-[0.08em] shadow-sm border border-[#222423]/10">
+                          {formatLabel}
+                        </span>
                       </div>
 
                       {/* Product Card Details */}
-                      <div className="p-6 flex flex-col flex-1">
-                        {/* Product Name */}
-                        <h3 className="font-serif font-bold uppercase tracking-wider text-base sm:text-lg text-volcanic-ash group-hover:text-oxidized-copper transition-colors line-clamp-1">
-                          {displayName}
-                        </h3>
-
-                        {/* Species in Italic */}
-                        <p className="font-sans italic text-volcanic-ash/60 text-xs sm:text-sm mt-1 mb-2 line-clamp-1">
-                          {product.speciesLatin || product.species}
-                        </p>
-
-                        {/* Weight / Format info in DM Mono 12px */}
-                        <div className="font-mono text-[12px] text-volcanic-ash/70 mb-4 line-clamp-1 tracking-tight">
-                          {product.weight}
-                        </div>
-
-                        {/* Price in DM Mono Bold */}
-                        <div className="mt-auto pt-3 border-t border-volcanic-ash/10 flex items-baseline justify-between">
-                          <span className="font-mono font-bold text-lg text-volcanic-ash">
-                            {formatPrice(product.priceRWF, product.priceUSD)}
-                          </span>
-
-                          {product.isSubscribable && (
-                            <span className="text-[11px] font-mono text-oxidized-copper">
-                              Sub: {formatPrice(Math.round(product.priceRWF * 0.85), product.priceUSD ? +(product.priceUSD * 0.85).toFixed(2) : undefined)}
+                      <div className="flex flex-col flex-1 justify-between px-1">
+                        <div>
+                          {/* Social Proof: 5 filled gold stars + review count */}
+                          <div className="flex items-center gap-1.5 text-xs text-[#D4AF6A] mb-1">
+                            <span>★★★★★</span>
+                            <span className="text-[11px] font-sans font-medium text-[#222423]/70">
+                              4.9 (142)
                             </span>
-                          )}
+                          </div>
+
+                          {/* Botanical Latin & Spec Subtitle */}
+                          <p className="text-[11px] font-sans font-semibold uppercase tracking-[0.1em] text-[#527361] mb-1 line-clamp-1">
+                            {product.speciesLatin || product.species}
+                            {product.betaGlucans ? ` · ${product.betaGlucans}` : ''}
+                          </p>
+
+                          {/* Product Name */}
+                          <h3 className="font-serif text-lg font-bold text-[#222423] leading-snug line-clamp-2 min-h-[3rem] group-hover:text-[#B86B43] transition-colors mt-1">
+                            {displayName}
+                          </h3>
+
+                          {/* Short Description */}
+                          <p className="text-xs font-sans text-[#222423]/75 mt-1 mb-4 line-clamp-2">
+                            {product.description}
+                          </p>
                         </div>
                       </div>
                     </Link>
 
-                    {/* Add to Bag CTA Button */}
-                    <div className="px-6 pb-6 pt-0">
-                      <button
-                        onClick={(e) => handleAddToCart(e, product)}
-                        className="w-full py-3 bg-oxidized-copper hover:brightness-110 active:scale-[0.99] text-white font-mono text-xs uppercase tracking-widest font-semibold transition-all duration-200 shadow-xs flex items-center justify-center gap-2 cursor-pointer"
-                      >
-                        <ShoppingBag className="w-3.5 h-3.5 text-white" />
-                        <span>Add to Bag</span>
-                      </button>
-                    </div>
+                    {/* Solid Pill CTA Button */}
+                    <button
+                      type="button"
+                      onClick={(e) => handleAddToCart(e, product)}
+                      className="w-full rounded-full bg-[#222423] group-hover:bg-[#B86B43] text-[#EAE8E1] font-sans font-semibold text-xs uppercase tracking-[0.14em] py-3.5 px-5 mt-3 flex items-center justify-between transition-all duration-300 cursor-pointer shadow-md"
+                    >
+                      <span>ADD TO BAG</span>
+                      <span className="font-medium text-white/95">
+                        {formatPrice(product.priceRWF, product.priceUSD)}
+                      </span>
+                    </button>
                   </motion.div>
                 );
               })}
@@ -450,38 +438,38 @@ const Shop: React.FC = () => {
       ========================================================================= */}
       <section className="border-t border-volcanic-ash/15 bg-kinigi-mist/40 py-16 px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
-          <div className="flex flex-col items-center md:items-start p-6 bg-kinigi-paper border border-volcanic-ash/10">
-            <span className="font-mono text-xs text-oxidized-copper uppercase tracking-widest mb-2 font-semibold">
+          <div className="flex flex-col items-center md:items-start p-6 bg-white border border-[#222423]/10 rounded-2xl shadow-xs">
+            <span className="font-sans text-xs text-[#B86B43] uppercase tracking-widest mb-2 font-bold">
               01 · Dual Extraction
             </span>
-            <h4 className="font-serif font-bold text-lg text-volcanic-ash mb-2">
+            <h4 className="font-serif font-bold text-lg text-[#222423] mb-2">
               Hot Water & Organic Cane Alcohol
             </h4>
-            <p className="font-sans text-xs text-volcanic-ash/70 leading-relaxed">
+            <p className="font-sans text-xs text-[#222423]/70 leading-relaxed">
               Liberates water-soluble beta-1,3/1,6-glucans and alcohol-soluble triterpenes for maximum cellular bioavailability.
             </p>
           </div>
 
-          <div className="flex flex-col items-center md:items-start p-6 bg-kinigi-paper border border-volcanic-ash/10">
-            <span className="font-mono text-xs text-verdigris-bamboo uppercase tracking-widest mb-2 font-semibold">
+          <div className="flex flex-col items-center md:items-start p-6 bg-white border border-[#222423]/10 rounded-2xl shadow-xs">
+            <span className="font-sans text-xs text-[#527361] uppercase tracking-widest mb-2 font-bold">
               02 · Highland Soil Purity
             </span>
-            <h4 className="font-serif font-bold text-lg text-volcanic-ash mb-2">
+            <h4 className="font-serif font-bold text-lg text-[#222423] mb-2">
               Kinigi Basalt & Organic Juncao
             </h4>
-            <p className="font-sans text-xs text-volcanic-ash/70 leading-relaxed">
+            <p className="font-sans text-xs text-[#222423]/70 leading-relaxed">
               Nurtured on nutrient-dense volcanic substrate at 2,400 meters with zero pesticides, chemical fertilizers, or oat grain fillers.
             </p>
           </div>
 
-          <div className="flex flex-col items-center md:items-start p-6 bg-kinigi-paper border border-volcanic-ash/10">
-            <span className="font-mono text-xs text-spore-gold uppercase tracking-widest mb-2 font-semibold">
+          <div className="flex flex-col items-center md:items-start p-6 bg-white border border-[#222423]/10 rounded-2xl shadow-xs">
+            <span className="font-sans text-xs text-[#D4AF6A] uppercase tracking-widest mb-2 font-bold">
               03 · Third-Party COA Verified
             </span>
-            <h4 className="font-serif font-bold text-lg text-volcanic-ash mb-2">
+            <h4 className="font-serif font-bold text-lg text-[#222423] mb-2">
               Species NMR & Heavy Metal Cleared
             </h4>
-            <p className="font-sans text-xs text-volcanic-ash/70 leading-relaxed">
+            <p className="font-sans text-xs text-[#222423]/70 leading-relaxed">
               Every production batch undergoes third-party Megazyme beta-glucan assay and ICP-MS testing below 0.01 ppm detection limits.
             </p>
           </div>

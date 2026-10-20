@@ -90,28 +90,28 @@ const CartDrawer: React.FC = () => {
           />
 
           {/* Slide-out Drawer Container */}
-          <div className="fixed inset-y-0 right-0 max-w-full flex pl-6">
+          <div className="fixed inset-y-0 right-0 max-w-full flex">
             <motion.div
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 30, stiffness: 320 }}
-              className="w-screen max-w-full sm:w-[420px] bg-[#141515] text-[#EAE8E1] shadow-2xl flex flex-col border-l border-white/10"
+              className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-md bg-[#181A19] text-[#EAE8E1] flex flex-col h-[100dvh] shadow-2xl border-l border-white/10"
               role="dialog"
               aria-modal="true"
               aria-labelledby="cart-drawer-heading"
             >
               {/* Header */}
-              <div className="px-6 py-5 border-b border-white/10 flex items-center justify-between bg-volcanic-deep shrink-0">
+              <div className="p-5 border-b border-[#EAE8E1]/10 flex items-center justify-between bg-[#141515] shrink-0">
                 <div className="flex items-center gap-2.5">
-                  <ShoppingBag className="w-5 h-5 text-oxidized-copper" />
+                  <ShoppingBag className="w-5 h-5 text-[#B86B43]" />
                   <h2
                     id="cart-drawer-heading"
-                    className="font-serif text-lg font-bold tracking-wide text-kinigi-mist"
+                    className="font-serif text-lg font-bold tracking-wide text-[#EAE8E1]"
                   >
                     Apothecary Satchel
                   </h2>
-                  <span className="font-mono text-xs text-spore-gold bg-spore-gold/15 px-2 py-0.5 border border-spore-gold/30">
+                  <span className="font-sans font-semibold text-xs text-[#D4AF6A] bg-[#D4AF6A]/15 px-2.5 py-0.5 rounded-full border border-[#D4AF6A]/30">
                     {cartCount} {cartCount === 1 ? 'item' : 'items'}
                   </span>
                 </div>
@@ -119,7 +119,7 @@ const CartDrawer: React.FC = () => {
                 <button
                   onClick={closeCart}
                   aria-label="Close cart"
-                  className="p-1.5 text-kinigi-mist/70 hover:text-white transition-colors focus:outline-none"
+                  className="p-1.5 text-[#EAE8E1]/70 hover:text-white transition-colors focus:outline-none cursor-pointer"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -252,12 +252,12 @@ const CartDrawer: React.FC = () => {
                     return (
                       <div
                         key={item.id}
-                        className="bg-white/5 border border-white/10 p-3.5 space-y-3 group hover:border-white/20 transition-all"
+                        className="bg-white/5 border border-white/10 rounded-xl p-3.5 space-y-3 group hover:border-[#B86B43]/40 transition-all"
                       >
                         {/* Item top row: Image, Title, Stepper, Price, Remove */}
                         <div className="flex items-start gap-3">
                           {/* Image */}
-                          <div className="w-16 h-16 rounded bg-black/40 overflow-hidden shrink-0 border border-white/10">
+                          <div className="w-16 h-16 rounded-lg bg-black/40 overflow-hidden shrink-0 border border-white/10">
                             <img
                               src={item.image}
                               alt={item.name}
@@ -265,49 +265,49 @@ const CartDrawer: React.FC = () => {
                             />
                           </div>
 
-                          {/* Info */}
-                          <div className="flex-1 min-w-0">
-                            <h4 className="font-serif text-sm font-semibold text-kinigi-mist leading-tight truncate">
+                          {/* Info Column */}
+                          <div className="flex-1 min-w-0 pr-2">
+                            <h4 className="font-serif text-sm font-semibold text-[#EAE8E1] leading-tight truncate">
                               {item.name}
                             </h4>
-                            <span className="font-mono text-[10px] text-oxidized-copper block mt-0.5">
+                            <span className="font-sans text-[11px] text-[#B86B43] font-medium block mt-0.5">
                               {item.format}
                             </span>
 
                             {/* Stepper & Price row */}
-                            <div className="flex items-center justify-between mt-2.5">
+                            <div className="flex items-center justify-between gap-2 mt-2.5">
                               {/* Quantity Stepper */}
-                              <div className="inline-flex items-center border border-white/20 bg-black/30">
+                              <div className="inline-flex items-center border border-white/20 bg-black/40 rounded-full px-1">
                                 <button
                                   onClick={() => updateQuantity(item.id, -1)}
-                                  className="p-1 hover:text-oxidized-copper hover:bg-white/5 transition-colors focus:outline-none"
+                                  className="p-1 hover:text-[#B86B43] transition-colors focus:outline-none cursor-pointer"
                                   aria-label="Decrease quantity"
                                 >
-                                  <Minus className="w-3.5 h-3.5" />
+                                  <Minus className="w-3 h-3" />
                                 </button>
-                                <span className="font-mono text-xs px-2.5 font-semibold text-kinigi-mist select-none">
+                                <span className="font-sans text-xs px-2 font-semibold text-[#EAE8E1] select-none">
                                   {item.quantity}
                                 </span>
                                 <button
                                   onClick={() => updateQuantity(item.id, 1)}
-                                  className="p-1 hover:text-oxidized-copper hover:bg-white/5 transition-colors focus:outline-none"
+                                  className="p-1 hover:text-[#B86B43] transition-colors focus:outline-none cursor-pointer"
                                   aria-label="Increase quantity"
                                 >
-                                  <Plus className="w-3.5 h-3.5" />
+                                  <Plus className="w-3 h-3" />
                                 </button>
                               </div>
 
                               {/* Price */}
-                              <div className="text-right">
+                              <div className="shrink-0 whitespace-nowrap text-right font-sans font-bold text-sm text-[#EAE8E1]">
                                 {item.isSubscription ? (
-                                  <div className="flex items-baseline gap-1.5">
-                                    <span className="font-mono text-[11px] line-through text-kinigi-mist/40">
+                                  <div className="flex items-baseline gap-1.5 justify-end">
+                                    <span className="text-[11px] line-through text-[#EAE8E1]/40 font-normal">
                                       {formatPrice(
                                         item.priceRwf * item.quantity,
                                         item.priceUsd * item.quantity
                                       )}
                                     </span>
-                                    <span className="font-mono text-xs font-bold text-spore-gold">
+                                    <span className="text-sm font-bold text-[#D4AF6A]">
                                       {formatPrice(
                                         Math.round(item.priceRwf * item.quantity * 0.85),
                                         item.priceUsd * item.quantity * 0.85
@@ -315,7 +315,7 @@ const CartDrawer: React.FC = () => {
                                     </span>
                                   </div>
                                 ) : (
-                                  <span className="font-mono text-xs font-bold text-kinigi-mist">
+                                  <span className="text-sm font-bold text-[#EAE8E1]">
                                     {formatPrice(
                                       item.priceRwf * item.quantity,
                                       item.priceUsd * item.quantity
@@ -329,7 +329,7 @@ const CartDrawer: React.FC = () => {
                           {/* Remove button */}
                           <button
                             onClick={() => removeFromCart(item.id)}
-                            className="p-1 text-kinigi-mist/40 hover:text-red-400 transition-colors focus:outline-none"
+                            className="p-1.5 text-[#EAE8E1]/40 hover:text-red-400 transition-colors focus:outline-none cursor-pointer shrink-0"
                             aria-label={`Remove ${item.name} from cart`}
                           >
                             <Trash2 className="w-4 h-4" />
@@ -397,24 +397,24 @@ const CartDrawer: React.FC = () => {
 
               {/* Cart Summary & Checkout Footer */}
               {cart.length > 0 && (
-                <div className="px-6 py-5 border-t border-white/10 bg-volcanic-deep space-y-4 shrink-0">
+                <div className="shrink-0 p-5 border-t border-[#EAE8E1]/10 bg-[#141515] space-y-4">
                   {/* Totals */}
-                  <div className="space-y-1.5 text-xs font-mono">
-                    <div className="flex justify-between text-kinigi-mist/70">
+                  <div className="space-y-1.5 text-xs font-sans">
+                    <div className="flex justify-between text-[#EAE8E1]/70">
                       <span>Subtotal</span>
-                      <span>{formatPrice(subtotalRwf, subtotalUsd)}</span>
+                      <span className="font-semibold text-[#EAE8E1]">{formatPrice(subtotalRwf, subtotalUsd)}</span>
                     </div>
 
                     {(savingsRwf > 0 || savingsUsd > 0) && (
-                      <div className="flex justify-between text-spore-gold">
+                      <div className="flex justify-between text-[#D4AF6A] font-semibold">
                         <span>Subscription Savings (15%)</span>
                         <span>-{formatPrice(savingsRwf, savingsUsd)}</span>
                       </div>
                     )}
 
-                    <div className="flex justify-between text-base font-serif font-bold text-kinigi-mist pt-2 border-t border-white/10">
+                    <div className="flex justify-between text-base font-serif font-bold text-[#EAE8E1] pt-2 border-t border-white/10">
                       <span>Total</span>
-                      <span className="font-mono text-spore-gold">
+                      <span className="text-base font-sans font-bold text-[#D4AF6A]">
                         {formatPrice(totalRwf, totalUsd)}
                       </span>
                     </div>
@@ -422,17 +422,17 @@ const CartDrawer: React.FC = () => {
 
                   {/* Payment Method Selector */}
                   <div className="space-y-2">
-                    <label className="font-mono text-[10px] uppercase tracking-wider text-kinigi-mist/60 block">
+                    <label className="font-sans text-[10px] uppercase tracking-wider text-[#EAE8E1]/70 block font-semibold">
                       Express Payment Method
                     </label>
-                    <div className="grid grid-cols-3 gap-2 text-[10px] font-mono">
+                    <div className="grid grid-cols-3 gap-2 text-xs font-sans">
                       <button
                         type="button"
                         onClick={() => setSelectedPayment('momo')}
-                        className={`p-2 text-center border transition-all ${
+                        className={`py-2 px-1 text-center rounded-lg border transition-all cursor-pointer font-semibold ${
                           selectedPayment === 'momo'
-                            ? 'border-oxidized-copper bg-oxidized-copper/20 text-white font-bold'
-                            : 'border-white/10 bg-white/5 text-kinigi-mist/70 hover:bg-white/10'
+                            ? 'border-[#B86B43] bg-[#B86B43]/20 text-white shadow-xs'
+                            : 'border-white/10 bg-white/5 text-[#EAE8E1]/70 hover:bg-white/10'
                         }`}
                       >
                         MTN MoMo
@@ -440,10 +440,10 @@ const CartDrawer: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => setSelectedPayment('bk')}
-                        className={`p-2 text-center border transition-all ${
+                        className={`py-2 px-1 text-center rounded-lg border transition-all cursor-pointer font-semibold ${
                           selectedPayment === 'bk'
-                            ? 'border-oxidized-copper bg-oxidized-copper/20 text-white font-bold'
-                            : 'border-white/10 bg-white/5 text-kinigi-mist/70 hover:bg-white/10'
+                            ? 'border-[#B86B43] bg-[#B86B43]/20 text-white shadow-xs'
+                            : 'border-white/10 bg-white/5 text-[#EAE8E1]/70 hover:bg-white/10'
                         }`}
                       >
                         BK / Urubuto
@@ -451,10 +451,10 @@ const CartDrawer: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => setSelectedPayment('card')}
-                        className={`p-2 text-center border transition-all ${
+                        className={`py-2 px-1 text-center rounded-lg border transition-all cursor-pointer font-semibold ${
                           selectedPayment === 'card'
-                            ? 'border-oxidized-copper bg-oxidized-copper/20 text-white font-bold'
-                            : 'border-white/10 bg-white/5 text-kinigi-mist/70 hover:bg-white/10'
+                            ? 'border-[#B86B43] bg-[#B86B43]/20 text-white shadow-xs'
+                            : 'border-white/10 bg-white/5 text-[#EAE8E1]/70 hover:bg-white/10'
                         }`}
                       >
                         Visa / Apple Pay
@@ -463,12 +463,12 @@ const CartDrawer: React.FC = () => {
                   </div>
 
                   {/* Delivery Info */}
-                  <div className="p-2.5 bg-black/40 border border-white/5 space-y-1 text-[11px] font-mono text-kinigi-mist/60">
-                    <div className="flex items-center gap-1.5 text-kinigi-mist/90">
-                      <Truck className="w-3.5 h-3.5 text-oxidized-copper shrink-0" />
-                      <span>Same-day Kigali delivery: Nyarutarama, Kimihurura, Kiyovu, Kacyiru, Remera</span>
+                  <div className="p-3 bg-black/40 border border-white/5 rounded-xl space-y-1 text-xs font-sans text-[#EAE8E1]/70">
+                    <div className="flex items-center gap-1.5 text-[#EAE8E1]/90 font-medium">
+                      <Truck className="w-3.5 h-3.5 text-[#B86B43] shrink-0" />
+                      <span>Same-day Kigali delivery across major sectors</span>
                     </div>
-                    <div className="text-[10px] text-kinigi-mist/50 pl-5">
+                    <div className="text-[11px] text-[#EAE8E1]/50 pl-5">
                       DHL Express International dispatch available worldwide.
                     </div>
                   </div>
@@ -477,16 +477,16 @@ const CartDrawer: React.FC = () => {
                   <button
                     onClick={handleCheckout}
                     disabled={isCheckingOut}
-                    className="w-full py-4 bg-oxidized-copper hover:bg-oxidized-copper/90 text-white font-sans text-xs uppercase tracking-widest font-semibold transition-all duration-200 shadow-xl shadow-oxidized-copper/20 flex items-center justify-center gap-2 active:scale-95 disabled:opacity-50"
+                    className="w-full py-4 rounded-full bg-[#B86B43] hover:bg-[#a35b36] text-white font-sans text-xs uppercase tracking-[0.16em] font-semibold transition-all duration-300 shadow-xl shadow-[#B86B43]/20 flex items-center justify-center gap-2 active:scale-95 disabled:opacity-50 cursor-pointer"
                   >
                     {isCheckingOut ? (
                       <span className="animate-pulse flex items-center gap-2">
-                        <Sparkles className="w-4 h-4 text-spore-gold" />
+                        <Sparkles className="w-4 h-4 text-[#D4AF6A]" />
                         Authorizing Ritual...
                       </span>
                     ) : (
                       <>
-                        <ShieldCheck className="w-4 h-4 text-spore-gold" />
+                        <ShieldCheck className="w-4 h-4 text-[#D4AF6A]" />
                         <span>Proceed to Checkout</span>
                         <ArrowRight className="w-4 h-4" />
                       </>

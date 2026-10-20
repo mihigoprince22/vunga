@@ -191,47 +191,45 @@ const Navbar: React.FC = () => {
               <span>{t('nav.findMatch') || 'FIND YOUR MATCH'}</span>
             </button>
 
-            {/* Language Switcher: EN | RW | FR */}
-            <div className="flex items-center border border-white/15 px-1 py-0.5 rounded-full bg-[#222423]/60">
-              {languages.map((lang, index) => {
+            {/* Language Switcher: Segmented Pill */}
+            <div className="flex items-center rounded-full bg-[#222423] p-1 border border-[#EAE8E1]/15">
+              {languages.map((lang) => {
                 const isSelected = language === lang;
                 return (
-                  <React.Fragment key={lang}>
-                    <button
-                      onClick={() => setLanguage(lang)}
-                      className={`relative px-2.5 py-1 font-sans text-[11px] font-semibold tracking-wider transition-colors duration-150 cursor-pointer ${
-                        isSelected
-                          ? 'text-[#D4AF6A]'
-                          : 'text-[#EAE8E1]/60 hover:text-[#EAE8E1]'
-                      }`}
-                    >
-                      {lang}
-                      {isSelected && (
-                        <span className="absolute bottom-0.5 left-2.5 right-2.5 h-0.5 bg-[#B86B43] rounded-full" />
-                      )}
-                    </button>
-                    {index < languages.length - 1 && (
-                      <span className="text-white/20 text-[10px] select-none">|</span>
-                    )}
-                  </React.Fragment>
+                  <button
+                    key={lang}
+                    onClick={() => setLanguage(lang)}
+                    className={`rounded-full px-2.5 py-0.5 text-[11px] font-sans font-semibold transition-all duration-200 cursor-pointer ${
+                      isSelected
+                        ? 'bg-[#B86B43] text-[#EAE8E1] shadow-xs'
+                        : 'text-[#EAE8E1]/60 hover:text-white'
+                    }`}
+                  >
+                    {lang}
+                  </button>
                 );
               })}
             </div>
 
-            {/* Currency Switcher: RWF | USD toggle */}
-            <button
-              onClick={toggleCurrency}
-              aria-label="Toggle currency"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/15 bg-[#222423]/60 text-[#EAE8E1] hover:text-white font-sans text-[11px] font-semibold tracking-wider transition-all duration-200 hover:border-[#B86B43]/50 cursor-pointer"
-            >
-              <span className={currency === 'RWF' ? 'text-[#D4AF6A] font-bold' : 'text-[#EAE8E1]/50'}>
-                RWF
-              </span>
-              <span className="text-white/20 select-none">/</span>
-              <span className={currency === 'USD' ? 'text-[#D4AF6A] font-bold' : 'text-[#EAE8E1]/50'}>
-                USD
-              </span>
-            </button>
+            {/* Currency Switcher: Segmented Pill */}
+            <div className="flex items-center rounded-full bg-[#222423] p-1 border border-[#EAE8E1]/15">
+              {(['RWF', 'USD'] as const).map((curr) => {
+                const isSelected = currency === curr;
+                return (
+                  <button
+                    key={curr}
+                    onClick={() => setCurrency(curr)}
+                    className={`rounded-full px-2.5 py-0.5 text-[11px] font-sans font-semibold transition-all duration-200 cursor-pointer ${
+                      isSelected
+                        ? 'bg-[#B86B43] text-[#EAE8E1] shadow-xs'
+                        : 'text-[#EAE8E1]/60 hover:text-white'
+                    }`}
+                  >
+                    {curr}
+                  </button>
+                );
+              })}
+            </div>
 
             {/* Cart Bag Icon with Item Count Badge */}
             <button
@@ -405,44 +403,51 @@ const Navbar: React.FC = () => {
             {/* Mobile Footer Area: Currency & Language Switchers */}
             <div className="px-6 py-8 border-t border-white/10 bg-[#222423]/40 space-y-5">
               <div className="flex items-center justify-between">
-                <span className="font-sans text-xs uppercase tracking-wider text-[#EAE8E1]/70">
+                <span className="font-sans text-xs uppercase tracking-wider text-[#EAE8E1]/70 font-medium">
                   {t('nav.language') || 'Language'}
                 </span>
-                <div className="flex items-center border border-white/15 px-1 py-0.5 rounded-full bg-[#141515]">
-                  {languages.map((lang, index) => (
-                    <React.Fragment key={lang}>
+                <div className="flex items-center rounded-full bg-[#141515] p-1 border border-[#EAE8E1]/15">
+                  {languages.map((lang) => {
+                    const isSelected = language === lang;
+                    return (
                       <button
+                        key={lang}
                         onClick={() => setLanguage(lang)}
-                        className={`px-3 py-1 font-sans text-xs font-semibold ${
-                          language === lang ? 'text-[#D4AF6A]' : 'text-[#EAE8E1]/60'
+                        className={`rounded-full px-3 py-1 font-sans text-xs font-semibold transition-all duration-200 cursor-pointer ${
+                          isSelected
+                            ? 'bg-[#B86B43] text-[#EAE8E1]'
+                            : 'text-[#EAE8E1]/60 hover:text-white'
                         }`}
                       >
                         {lang}
                       </button>
-                      {index < languages.length - 1 && (
-                        <span className="text-white/20 text-xs">|</span>
-                      )}
-                    </React.Fragment>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
 
               <div className="flex items-center justify-between">
-                <span className="font-sans text-xs uppercase tracking-wider text-[#EAE8E1]/70">
+                <span className="font-sans text-xs uppercase tracking-wider text-[#EAE8E1]/70 font-medium">
                   {t('nav.currency') || 'Currency'}
                 </span>
-                <button
-                  onClick={toggleCurrency}
-                  className="flex items-center gap-2 px-4 py-1.5 border border-white/15 rounded-full bg-[#141515] font-sans text-xs font-semibold"
-                >
-                  <span className={currency === 'RWF' ? 'text-[#D4AF6A]' : 'text-[#EAE8E1]/50'}>
-                    RWF
-                  </span>
-                  <span className="text-white/20">/</span>
-                  <span className={currency === 'USD' ? 'text-[#D4AF6A]' : 'text-[#EAE8E1]/50'}>
-                    USD
-                  </span>
-                </button>
+                <div className="flex items-center rounded-full bg-[#141515] p-1 border border-[#EAE8E1]/15">
+                  {(['RWF', 'USD'] as const).map((curr) => {
+                    const isSelected = currency === curr;
+                    return (
+                      <button
+                        key={curr}
+                        onClick={() => setCurrency(curr)}
+                        className={`rounded-full px-3 py-1 font-sans text-xs font-semibold transition-all duration-200 cursor-pointer ${
+                          isSelected
+                            ? 'bg-[#B86B43] text-[#EAE8E1]'
+                            : 'text-[#EAE8E1]/60 hover:text-white'
+                        }`}
+                      >
+                        {curr}
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </motion.div>

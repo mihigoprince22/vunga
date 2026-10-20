@@ -157,14 +157,43 @@ const SCIENCE_CRITERIA = [
   },
 ];
 
+const TESTIMONIALS = [
+  {
+    quote: "The texture and clean earth aroma of VŪNGA's Kinigi King Trumpet and Pearl Oyster have redefined our signature mushroom dishes at Heaven. True sub-alpine volcanic terroir you can taste in every pan sear.",
+    author: "Chef Eric M.",
+    role: "Culinary Director, Heaven Restaurant Kigali",
+    badge: "Kigali Culinary Partner",
+    rating: 5,
+  },
+  {
+    quote: "As an integrative physician, beta-glucan assay integrity is non-negotiable. VŪNGA's dual-extracted Lion's Mane has provided my patients sustained cognitive clarity and focus without afternoon caffeine spikes.",
+    author: "Dr. Claire N.",
+    role: "Integrative Neurologist, Kigali Medical Centre",
+    badge: "Verified Practitioner",
+    rating: 5,
+  },
+  {
+    quote: "Fueling summit climbs up Mount Bisoke with two squares of Cordyceps Cacao changed my endurance game completely. Steady ATP output, effortless breathing, and rich single-estate Rwandan chocolate.",
+    author: "Patrick K.",
+    role: "Highland Trail Runner & Guide, Musanze",
+    badge: "Musanze Trail Guide",
+    rating: 5,
+  },
+];
+
 const Home: React.FC = () => {
   const { openQuiz, openCart, addToCart, formatPrice } = useVunga();
 
   // Benefit Switcher state
   const [activeTab, setActiveTab] = useState<number>(0);
 
-  // Ritual Bundle Builder state: 3 slots
-  const [selectedSlots, setSelectedSlots] = useState<(Product | null)[]>([null, null, null]);
+  // Ritual Bundle Builder state: 3 slots initialized with VŪNGA's 3 signature products
+  // Slot 1: Lion's Mane Focus (id: 1), Slot 2: Cordyceps Energy Cacao (id: 4), Slot 3: Highland Reishi Calm (id: 2)
+  const [selectedSlots, setSelectedSlots] = useState<(Product | null)[]>([
+    products[0] || null,
+    products[3] || null,
+    products[1] || null,
+  ]);
 
   // Filtered products for active benefit tab
   const filteredProducts = useMemo(() => {
@@ -227,11 +256,16 @@ const Home: React.FC = () => {
   return (
     <main className="min-h-screen bg-[#F4F2EC] text-[#222423] selection:bg-[#B86B43] selection:text-white">
       {/* ========================================================================= */}
-      {/* SECTION 1: Full-Viewport Video Hero (dark #141515 bg)                     */}
+      {/* SECTION 1: Full-Viewport Video Hero (Deep Volcanic Ash #181A19 bg)         */}
       {/* ========================================================================= */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-[#141515] text-[#EAE8E1]">
-        {/* Background Video Container */}
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-[#181A19] text-[#EAE8E1]">
+        {/* Background Video Container with Immediate Image Fallback Underneath */}
         <div className="absolute inset-0 w-full h-full overflow-hidden">
+          <img
+            src="/assets/03_home-hero-idle-16x9_4K.jpg"
+            alt="Virunga Spores Backdrop Fallback"
+            className="absolute inset-0 w-full h-full object-cover -z-10"
+          />
           <video
             autoPlay
             loop
@@ -239,7 +273,7 @@ const Home: React.FC = () => {
             playsInline
             poster="/assets/03_home-hero-idle-16x9_4K.jpg"
             src="/assets/17_video-01-hero-virunga-spores-loop-16x9.mp4"
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover opacity-100 z-0"
           />
         </div>
 
@@ -321,9 +355,9 @@ const Home: React.FC = () => {
       </section>
 
       {/* ========================================================================= */}
-      {/* SECTION 2: "What brings you to the apothecary?" (Shop by Need Filter)    */}
+      {/* SECTION 2: "What brings you to the apothecary?" (Warm Kinigi Mist Daylight)*/}
       {/* ========================================================================= */}
-      <section id="apothecary-shop" className="py-20 lg:py-28 px-6 max-w-7xl mx-auto scroll-mt-20">
+      <section id="apothecary-shop" className="w-full bg-[#F4F1EA] py-24 px-6 text-[#222423] scroll-mt-20">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-10">
@@ -347,7 +381,7 @@ const Home: React.FC = () => {
                   className={`rounded-full px-6 py-2.5 text-xs font-sans uppercase tracking-[0.12em] transition-all duration-300 cursor-pointer ${
                     isActive
                       ? 'bg-[#222423] text-[#EAE8E1] font-semibold shadow-md'
-                      : 'bg-[#EAE8E1] hover:bg-[#222423]/10 text-[#222423] border border-[#222423]/15 font-medium'
+                      : 'bg-white hover:bg-[#222423]/10 text-[#222423] border border-[#222423]/15 font-medium shadow-xs'
                   }`}
                 >
                   {tab.pillLabel}
@@ -367,93 +401,100 @@ const Home: React.FC = () => {
                 transition={{ duration: 0.35, ease: 'easeOut' }}
                 className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-center"
               >
-                {filteredProducts.map((product) => (
-                  <Link
-                    key={product.id}
-                    to={`/shop/${product.slug}`}
-                    className="group relative flex flex-col justify-between rounded-2xl bg-[#F6F4EE] border border-[#222423]/10 p-3.5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl text-[#222423]"
-                  >
-                    {/* Image Container with Two-State Crossfade */}
-                    <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-[#1A1C1B] mb-4">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                      {product.hoverImage && (
+                {filteredProducts.map((product) => {
+                  const formatLabel =
+                    product.formats?.[0] || product.weight?.split(' ')[0] || (product.isFresh ? '500g Fresh' : '60g Extract');
+                  const badgeText =
+                    product.id === 1 || product.id === 4
+                      ? 'BESTSELLER'
+                      : product.isFresh
+                      ? "CHEF'S RESERVE"
+                      : '100% FRUITING BODY';
+
+                  return (
+                    <Link
+                      key={product.id}
+                      to={`/shop/${product.slug}`}
+                      className="group relative flex flex-col justify-between rounded-2xl bg-white border border-[#222423]/8 shadow-[0_8px_30px_rgb(34,36,35,0.06)] hover:shadow-[0_20px_40px_rgb(184,107,67,0.14)] p-4 transition-all duration-300 hover:-translate-y-1 text-[#222423]"
+                    >
+                      {/* Image Container with Two-State Crossfade */}
+                      <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-[#1A1C1B] mb-3">
                         <img
-                          src={product.hoverImage}
-                          alt={`${product.name} harvest ritual`}
-                          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0 group-hover:opacity-100 group-hover:scale-105"
+                          src={product.image}
+                          alt={product.name}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         />
-                      )}
+                        {product.hoverImage && (
+                          <img
+                            src={product.hoverImage}
+                            alt={`${product.name} harvest ritual`}
+                            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0 group-hover:opacity-100 group-hover:scale-105"
+                          />
+                        )}
 
-                      {/* Top-Left Pill Badge */}
-                      <span className="absolute top-3 left-3 z-10 rounded-full bg-[#141515]/85 backdrop-blur-md text-[#EAE8E1] px-3 py-1 text-[10px] font-sans font-semibold uppercase tracking-[0.12em] border border-[#B86B43]/40">
-                        {product.category === 'functional'
-                          ? 'Dual Extract'
-                          : product.category === 'cacao'
-                          ? '75% Dark Cacao'
-                          : product.isFresh
-                          ? 'Fresh Harvest'
-                          : 'Highland Reserve'}
-                      </span>
-
-                      {/* Top-Right Pill (Subscription or Fresh status) */}
-                      {product.isSubscribable ? (
-                        <span className="absolute top-3 right-3 z-10 rounded-full bg-[#B86B43]/90 backdrop-blur-md text-white px-2.5 py-1 text-[10px] font-sans font-semibold uppercase tracking-[0.1em] shadow-sm">
-                          Save 15%
+                        {/* Top-Left Pill Badge: BESTSELLER / CHEF'S RESERVE / 100% FRUITING BODY */}
+                        <span className="absolute top-3 left-3 z-10 rounded-full bg-[#141515]/90 backdrop-blur-md text-[#EAE8E1] px-3 py-1 text-[10px] font-sans font-semibold uppercase tracking-[0.12em] border border-[#B86B43]/40 shadow-sm">
+                          {badgeText}
                         </span>
-                      ) : product.isFresh ? (
-                        <span className="absolute top-3 right-3 z-10 rounded-full bg-[#527361]/90 backdrop-blur-md text-white px-2.5 py-1 text-[10px] font-sans font-semibold uppercase tracking-[0.1em] shadow-sm">
-                          Dawn Harvest
+
+                        {/* Top-Right Format Pill */}
+                        <span className="absolute top-3 right-3 z-10 rounded-full bg-white/95 backdrop-blur-md text-[#222423] px-2.5 py-1 text-[10px] font-sans font-semibold uppercase tracking-[0.08em] shadow-sm border border-[#222423]/10">
+                          {formatLabel}
                         </span>
-                      ) : null}
-                    </div>
-
-                    {/* Card Body (Strict high-contrast dark text) */}
-                    <div className="flex flex-col flex-1 justify-between px-1">
-                      <div>
-                        {/* Botanical Latin & Spec Subtitle */}
-                        <p className="text-[11px] font-sans font-medium italic text-[#527361] mb-1 line-clamp-1">
-                          {product.speciesLatin || product.species}
-                          {product.betaGlucans ? ` · ${product.betaGlucans}` : ''}
-                        </p>
-
-                        {/* Product Title (Full 2-line title, never truncated!) */}
-                        <h3 className="font-serif text-lg font-bold text-[#222423] leading-snug line-clamp-2 min-h-[3rem] group-hover:text-[#B86B43] transition-colors">
-                          {product.name}
-                        </h3>
-
-                        {/* Short 1-Line Benefit Description */}
-                        <p className="text-xs font-sans text-[#222423]/75 mt-1 mb-4 line-clamp-2">
-                          {product.description}
-                        </p>
                       </div>
 
-                      {/* Card Footer CTA Button (NO EMOJI!) */}
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          addToCart(
-                            product,
-                            1,
-                            product.formats?.[0] || product.weight || 'Standard'
-                          );
-                          openCart();
-                        }}
-                        className="w-full rounded-xl bg-[#222423] group-hover:bg-[#B86B43] text-[#EAE8E1] font-sans font-semibold text-xs uppercase tracking-[0.14em] py-3.5 px-4 flex items-center justify-between transition-colors duration-300 cursor-pointer shadow-sm"
-                      >
-                        <span>ADD TO BAG</span>
-                        <span className="font-medium text-white/95">
-                          {formatPrice(product.priceRWF, product.priceUSD)}
-                        </span>
-                      </button>
-                    </div>
-                  </Link>
-                ))}
+                      {/* Card Body */}
+                      <div className="flex flex-col flex-1 justify-between px-1">
+                        <div>
+                          {/* Social Proof: 5 filled gold stars + review count */}
+                          <div className="flex items-center gap-1.5 text-xs text-[#D4AF6A] mb-1">
+                            <span>★★★★★</span>
+                            <span className="text-[11px] font-sans font-medium text-[#222423]/70">
+                              4.9 (142)
+                            </span>
+                          </div>
+
+                          {/* Botanical Latin & Spec Subtitle */}
+                          <p className="text-[11px] font-sans font-semibold uppercase tracking-[0.1em] text-[#527361] mb-1 line-clamp-1">
+                            {product.speciesLatin || product.species}
+                            {product.betaGlucans ? ` · ${product.betaGlucans}` : ''}
+                          </p>
+
+                          {/* Product Title */}
+                          <h3 className="font-serif text-lg font-bold text-[#222423] leading-snug line-clamp-2 min-h-[3rem] group-hover:text-[#B86B43] transition-colors mt-1">
+                            {product.name}
+                          </h3>
+
+                          {/* Short 1-Line Benefit Description */}
+                          <p className="text-xs font-sans text-[#222423]/75 mt-1 mb-4 line-clamp-2">
+                            {product.description}
+                          </p>
+                        </div>
+
+                        {/* Solid Pill CTA Button */}
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            addToCart(
+                              product,
+                              1,
+                              product.formats?.[0] || product.weight || 'Standard'
+                            );
+                            openCart();
+                          }}
+                          className="w-full rounded-full bg-[#222423] group-hover:bg-[#B86B43] text-[#EAE8E1] font-sans font-semibold text-xs uppercase tracking-[0.14em] py-3.5 px-5 mt-4 flex items-center justify-between transition-all duration-300 cursor-pointer shadow-md"
+                        >
+                          <span>ADD TO BAG</span>
+                          <span className="font-medium text-white/95">
+                            {formatPrice(product.priceRWF, product.priceUSD)}
+                          </span>
+                        </button>
+                      </div>
+                    </Link>
+                  );
+                })}
               </motion.div>
             </AnimatePresence>
           </div>
@@ -546,9 +587,9 @@ const Home: React.FC = () => {
       </section>
 
       {/* ========================================================================= */}
-      {/* SECTION 4: "The Fruiting Body Standard" Science Matrix (Apothecary Palette) */}
+      {/* SECTION 4: "The Fruiting Body Standard" Science Matrix (Warm Alabaster Cream)*/}
       {/* ========================================================================= */}
-      <section className="bg-[#EAE8E1] py-20 lg:py-28 border-b border-[#222423]/10">
+      <section className="bg-[#FAF8F3] py-24 border-b border-[#222423]/10 text-[#222423]">
         <div className="max-w-6xl mx-auto px-6">
           {/* Header */}
           <div className="text-center max-w-3xl mx-auto mb-14">
@@ -670,14 +711,69 @@ const Home: React.FC = () => {
       </section>
 
       {/* ========================================================================= */}
+      {/* TESTIMONIALS STRIP: "Trusted Across Kigali & Beyond"                      */}
+      {/* ========================================================================= */}
+      <section className="bg-[#FAF8F3] py-20 lg:py-24 border-b border-[#222423]/10 text-[#222423]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <span className="text-xs font-sans font-semibold uppercase tracking-[0.2em] text-[#B86B43] block mb-2">
+              REAL EXPERIENCES &bull; PRAISED BY CHEFS &amp; PRACTITIONERS
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl text-[#222423] font-light">
+              Trusted Across Kigali &amp; Beyond
+            </h2>
+            <p className="font-sans text-sm sm:text-base text-[#222423]/75 mt-2">
+              From fine dining kitchens in Kimihurura to endurance athletes on the Virunga volcanoes.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            {TESTIMONIALS.map((item, idx) => (
+              <div
+                key={idx}
+                className="rounded-2xl bg-white border border-[#222423]/10 p-6 sm:p-8 shadow-[0_8px_30px_rgb(34,36,35,0.04)] flex flex-col justify-between hover:shadow-lg transition-all duration-300"
+              >
+                <div>
+                  <div className="flex items-center gap-1 text-[#D4AF6A] mb-4 text-sm">
+                    {Array.from({ length: item.rating }).map((_, i) => (
+                      <span key={i}>★</span>
+                    ))}
+                  </div>
+                  <p className="font-serif italic text-base sm:text-lg text-[#222423] leading-relaxed mb-6">
+                    &ldquo;{item.quote}&rdquo;
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-[#222423]/10">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-sans font-bold text-sm text-[#222423]">
+                        {item.author}
+                      </h4>
+                      <p className="font-sans text-xs text-[#222423]/60 mt-0.5">
+                        {item.role}
+                      </p>
+                    </div>
+                    <span className="text-[10px] font-sans font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full bg-[#527361]/10 text-[#527361] border border-[#527361]/20">
+                      {item.badge}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
       {/* SECTION 5: "Build Your Virunga Ritual" — 2-Column Split Bundle Builder     */}
       {/* ========================================================================= */}
-      <section className="bg-[#EAE8E1] py-20 lg:py-28">
+      <section className="bg-[#EAE8E1] py-24 text-[#222423]">
         <div className="max-w-7xl mx-auto px-6">
           {/* Section Header */}
           <div className="text-center max-w-2xl mx-auto mb-14">
             <span className="text-xs font-sans font-semibold uppercase tracking-[0.2em] text-[#B86B43] block mb-2">
-              ALICE MUSHROOMS CUSTOM APOTHECARY BUNDLE
+              CUSTOM APOTHECARY RITUAL &bull; SAVE 20% + FREE GIFTS
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl text-[#222423] font-light">
               Build Your Virunga Ritual

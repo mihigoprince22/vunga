@@ -1,5 +1,5 @@
-import React, { lazy, Suspense, useEffect } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import React, { lazy, Suspense } from 'react'
+import { Routes, Route } from 'react-router-dom'
 import { VungaProvider } from './context/VungaContext'
 import MarqueeTicker from './components/MarqueeTicker'
 import Navbar from './components/Navbar'
@@ -7,15 +7,7 @@ import Footer from './components/Footer'
 import CartDrawer from './components/CartDrawer'
 import QuizModal from './components/QuizModal'
 import SEOHead from './components/SEOHead'
-
-// Scroll to top on route change
-const ScrollToTop: React.FC = () => {
-  const { pathname } = useLocation()
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [pathname])
-  return null
-}
+import ScrollToTop from './components/ScrollToTop'
 // Lazy load page components
 const Home = lazy(() => import('./pages/Home'))
 const Shop = lazy(() => import('./pages/Shop'))
