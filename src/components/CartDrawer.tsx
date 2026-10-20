@@ -203,8 +203,8 @@ const CartDrawer: React.FC = () => {
                     <div className="flex items-center gap-2 mb-1">
                       <div className="w-8 h-8 rounded bg-black/40 p-0.5 overflow-hidden shrink-0 border border-white/10">
                         <img
-                          src="/assets/07_VUNGA_Storefront_And_Merch_Mockup.jpg"
-                          alt="VŪNGA Canvas Tote"
+                          src="/assets/Output_01_VUNGA_Asset_Kit.jpg"
+                          alt="VŪNGA Canvas Tote & Dosing Stamp Card"
                           className="w-full h-full object-cover"
                         />
                       </div>

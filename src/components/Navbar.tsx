@@ -108,7 +108,7 @@ const Navbar: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           {/* Left: VungaLogo */}
           <div className="flex items-center shrink-0">
-            <VungaLogo variant="light" asLink={true} />
+            <VungaLogo variant="light" asLink={true} layout="horizontal" />
           </div>
 
           {/* Center: Desktop Navigation Links */}
@@ -353,7 +353,7 @@ const Navbar: React.FC = () => {
           >
             {/* Mobile Header Bar */}
             <div className="flex items-center justify-between px-6 h-20 border-b border-white/10">
-              <VungaLogo variant="light" asLink={false} />
+              <VungaLogo variant="light" asLink={false} layout="horizontal" />
               <button
                 onClick={closeMobileMenu}
                 aria-label="Close navigation"

@@ -172,25 +172,27 @@ const Home: React.FC = () => {
   return (
     <main className="min-h-screen bg-[#F4F2EC] text-[#222423] selection:bg-[#B86B43] selection:text-white">
       {/* ========================================================================= */}
-      {/* SECTION 1: Full-Viewport Video Hero (dark #222423 bg)                     */}
+      {/* SECTION 1: Full-Viewport Video Hero (dark #141515 bg)                     */}
       {/* ========================================================================= */}
-      <section className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-[#222423] text-[#EAE8E1]">
-        {/* Background Video */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster="/assets/03_home-hero-idle-16x9_4K.jpg"
-          src="/assets/17_video-01-hero-virunga-spores-loop-16x9.mp4"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-[#141515] text-[#EAE8E1]">
+        {/* Background Video Container */}
+        <div className="absolute inset-0 w-full h-full overflow-hidden">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster="/assets/03_home-hero-idle-16x9_4K.jpg"
+            src="/assets/17_video-01-hero-virunga-spores-loop-16x9.mp4"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        </div>
 
         {/* Dark Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#222423]/95 via-[#222423]/70 to-transparent z-10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#141515]/95 via-[#222423]/75 to-[#222423]/30 z-10 pointer-events-none" />
 
         {/* Hero Content Left Aligned */}
-        <div className="relative z-20 flex-1 flex flex-col justify-center max-w-3xl px-8 lg:px-16 pt-32 pb-20">
+        <div className="relative z-20 flex-1 flex flex-col justify-center max-w-3xl px-8 lg:px-16 pt-28 pb-28">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -238,7 +240,7 @@ const Home: React.FC = () => {
         </div>
 
         {/* Pinned Bottom 5-Badge Spec Bar */}
-        <div className="relative z-20 w-full bg-[#141515]/60 backdrop-blur-sm border-t border-white/10 py-4 px-6">
+        <div className="absolute bottom-0 inset-x-0 z-20 w-full bg-[#141515]/75 backdrop-blur-md border-t border-white/10 py-4 px-6">
           <div className="max-w-7xl mx-auto flex items-center justify-start sm:justify-center overflow-x-auto gap-4 sm:gap-6 lg:gap-8 scrollbar-none py-1">
             {SPEC_BADGES.map((badge, idx) => {
               const Icon = badge.icon;
@@ -320,19 +322,19 @@ const Home: React.FC = () => {
                   <Link
                     key={product.id}
                     to={`/shop/${product.slug}`}
-                    className="group bg-[#F4F2EC] rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-[#222423]/10 flex flex-col"
+                    className="group bg-[#F4F2EC] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-[#222423]/10 flex flex-col"
                   >
                     {/* Image Container with Two-State Hover Crossfade */}
-                    <div className="aspect-[4/5] overflow-hidden relative bg-[#222423]/5">
+                    <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-[#141515]">
                       <img
                         src={product.image}
                         alt={product.name}
-                        className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 group-hover:opacity-0"
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 group-hover:opacity-0"
                       />
                       <img
                         src={product.hoverImage}
                         alt={`${product.name} detail`}
-                        className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-0 group-hover:opacity-100"
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 opacity-0 group-hover:scale-105 group-hover:opacity-100"
                       />
 
                       {/* Fresh Badge */}
@@ -402,19 +404,19 @@ const Home: React.FC = () => {
           style={{ y: yLionsMane }}
           src="/assets/14_cutout-01-lions-mane.png"
           alt="Lion's Mane Fruiting Body"
-          className="hidden lg:block absolute right-4 top-20 w-32 opacity-20 pointer-events-none z-0 select-none"
+          className="hidden lg:block absolute right-8 top-16 w-32 md:w-44 h-auto object-contain pointer-events-none select-none drop-shadow-2xl opacity-60 z-0"
         />
         <motion.img
           style={{ y: yReishi }}
           src="/assets/15_cutout-02-reishi-cap.png"
           alt="Reishi Mushroom Cap"
-          className="hidden lg:block absolute left-10 bottom-10 w-28 opacity-15 pointer-events-none z-0 select-none"
+          className="hidden lg:block absolute left-8 bottom-12 w-32 md:w-44 h-auto object-contain pointer-events-none select-none drop-shadow-2xl opacity-50 z-0"
         />
         <motion.img
           style={{ y: yScoop }}
           src="/assets/16_cutout-03-copper-dosing-scoop.png"
           alt="Copper Dosing Scoop"
-          className="hidden lg:block absolute right-20 bottom-32 w-24 opacity-20 pointer-events-none z-0 select-none"
+          className="hidden lg:block absolute right-16 bottom-24 w-32 md:w-44 h-auto object-contain pointer-events-none select-none drop-shadow-2xl opacity-65 z-0"
         />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6">
@@ -728,8 +730,8 @@ const Home: React.FC = () => {
                   </div>
                   <div className="flex items-center gap-2 bg-[#F4F2EC] px-3 py-1.5 rounded border border-[#222423]/10">
                     <img
-                      src="/assets/07_VUNGA_Storefront_And_Merch_Mockup.jpg"
-                      alt="Kinigi Mist Canvas Tote"
+                      src="/assets/Output_01_VUNGA_Asset_Kit.jpg"
+                      alt="Kinigi Mist Canvas Tote & Dosing Stamp Card"
                       className="w-8 h-8 object-cover rounded"
                     />
                     <span className="text-[11px] font-mono text-[#222423] font-medium">

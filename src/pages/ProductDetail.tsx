@@ -799,11 +799,11 @@ const ProductDetail: React.FC = () => {
                 key={relProduct.id}
                 onMouseEnter={() => setHoveredRelatedId(relProduct.id)}
                 onMouseLeave={() => setHoveredRelatedId(null)}
-                className="group bg-kinigi-paper border border-volcanic-ash/15 flex flex-col justify-between overflow-hidden transition-all duration-300 ease-out hover:scale-[1.02] hover:shadow-xl hover:border-volcanic-ash/30"
+                className="group bg-kinigi-paper border border-volcanic-ash/15 flex flex-col justify-between overflow-hidden rounded-xl transition-all duration-300 ease-out hover:scale-[1.02] hover:shadow-xl hover:border-volcanic-ash/30"
               >
                 <Link to={`/shop/${relProduct.slug}`} className="flex flex-col flex-1 block">
                   {/* 4:5 Aspect Container with crossfade */}
-                  <div className="relative aspect-[4/5] w-full overflow-hidden bg-kinigi-mist/40">
+                  <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-[#141515]">
                     <motion.img
                       src={relProduct.image}
                       alt={relProduct.name}

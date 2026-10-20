@@ -334,11 +334,11 @@ const Shop: React.FC = () => {
                     transition={{ duration: 0.35, ease: 'easeOut' }}
                     onMouseEnter={() => setHoveredCardId(product.id)}
                     onMouseLeave={() => setHoveredCardId(null)}
-                    className="group bg-kinigi-paper border border-volcanic-ash/15 flex flex-col justify-between overflow-hidden transition-all duration-300 ease-out hover:scale-[1.02] hover:shadow-xl hover:border-volcanic-ash/30"
+                    className="group bg-kinigi-paper border border-volcanic-ash/15 flex flex-col justify-between overflow-hidden rounded-xl transition-all duration-300 ease-out hover:scale-[1.02] hover:shadow-xl hover:border-volcanic-ash/30"
                   >
                     <Link to={`/shop/${product.slug}`} className="flex flex-col flex-1 block">
                       {/* 4:5 Aspect Ratio Image Container with Framer Motion Crossfade */}
-                      <div className="relative aspect-[4/5] w-full overflow-hidden bg-kinigi-mist/40">
+                      <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-[#141515]">
                         {/* Default Image */}
                         <motion.img
                           src={product.image}
