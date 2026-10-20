@@ -8,44 +8,38 @@ import type { Language } from '../context/VungaContext'
 
 const MEGA_MENU_COLUMNS = [
   {
-    title: 'By Benefit',
-    description: 'Targeted botanical protocols for mind and vitality',
+    title: 'Shop by Need',
+    description: 'Targeted physiological & vitality protocols from Kinigi',
     items: [
-      { name: 'Focus & Neurogenesis', desc: "Lion's Mane dual-extract", href: '/shop?benefit=focus' },
-      { name: 'Calm & Deep Sleep', desc: 'Highland Reishi calm ritual', href: '/shop?benefit=calm' },
-      { name: 'Immunity & Defense', desc: '5-Defenders beta-glucan complex', href: '/shop?benefit=immunity' },
-      { name: 'Energy & Stamina', desc: 'Cordyceps & 75% Rwandan cacao', href: '/shop?benefit=energy' },
-      { name: 'Culinary & Gourmet', desc: 'Fresh volcanic forest oysters', href: '/shop?benefit=culinary' },
+      { name: 'Focus & Clarity', desc: "Lion's Mane, King Trumpet & morning coffee protocols", href: '/shop?need=focus' },
+      { name: 'Calm & Deep Sleep', desc: 'Highland Reishi, Shiitake & evening twilight rituals', href: '/shop?need=calm' },
+      { name: 'Immunity & Protection', desc: '5-Defenders complex & high-beta-glucan defense', href: '/shop?need=immunity' },
+      { name: 'Stamina & Cacao', desc: 'Cordyceps, Golden Oyster & 75% dark Rwandan cacao', href: '/shop?need=energy' },
+      { name: 'Fresh Rwandan Culinary', desc: '7 highland species harvested dawn daily in Kinigi', href: '/shop?need=culinary' },
+    ],
+    showAllLink: true,
+  },
+  {
+    title: 'Functional Apothecary',
+    description: 'Dual hydro-ethanolic extracts with >30% verified beta-glucans',
+    items: [
+      { name: "Organic Lion's Mane Focus", desc: 'Nerve Growth Factor (NGF) & sharp cognitive flow', href: '/shop/lions-mane-focus' },
+      { name: 'Highland Reishi Calm', desc: 'Adrenal reset & restorative slow-wave REM sleep', href: '/shop/highland-reishi-calm' },
+      { name: 'Virunga 5-Defenders Immunity', desc: '5 master fungal species synergistic shield', href: '/shop/virunga-5-defenders' },
+      { name: 'Cordyceps Energy Cacao', desc: 'Cellular ATP stamina with single-estate chocolate', href: '/shop/cordyceps-energy-cacao' },
     ],
   },
   {
-    title: 'Functional Extracts',
-    description: 'Ultrasound-assisted dual extracts in miron violet glass',
+    title: 'Fresh & Dried Rwandan Harvest',
+    description: 'Cultivated at 2,400m altitude on volcanic compost in Kinigi',
     items: [
-      { name: "Lion's Mane Extract (50g)", desc: 'Micronized organic fruiting body', href: '/shop/lions-mane-dual-extract' },
-      { name: 'Highland Reishi Tincture (100ml)', desc: 'Organic cane alcohol & water extraction', href: '/shop/highland-reishi-calm' },
-      { name: '5-Defenders Complex (60 Caps)', desc: 'Multi-species synergistic blend', href: '/shop/five-defenders-immunity-complex' },
-      { name: 'Cordyceps Ceremonial Cacao', desc: 'Craft single-origin Musanze cacao', href: '/shop/cordyceps-energy-cacao' },
-    ],
-  },
-  {
-    title: 'Fresh & Dried Mushrooms',
-    description: 'Harvested daily at 2,400m altitude in Kinigi',
-    items: [
-      { name: 'Kinigi Pearl Oyster (500g)', desc: 'Velvety clusters on coffee pulp', href: '/shop/kinigi-pearl-oyster-fresh' },
-      { name: 'Virunga Oak Shiitake (400g)', desc: 'Forest log grown, deep umami', href: '/shop/virunga-oak-shiitake-fresh' },
-      { name: 'Golden Oyster Reserve (350g)', desc: 'Delicate cashew notes, bright yellow', href: '/shop' },
-      { name: 'Rwanda Termitomyces & Wood Ear', desc: 'Wild-foraged seasonal rarity', href: '/shop' },
-    ],
-  },
-  {
-    title: 'Bundles & Ritual Sets',
-    description: 'Curated dispensary collections with bundled savings',
-    items: [
-      { name: 'Apothecary Starter Sanctuary', desc: 'All 4 Core Extracts + Free Scoop (Save 20%)', href: '/shop' },
-      { name: 'Daily Bio-Hacker Protocol', desc: "Morning Lion's Mane + Evening Reishi", href: '/shop' },
-      { name: "Chef's Highland Forager Crate", desc: '3 Fresh varieties delivered cold in Kigali', href: '/shop' },
-      { name: 'Brushed Copper Dosing Ritual Set', desc: 'Hand-hammered 2g apothecary scoop', href: '/shop' },
+      { name: 'Kinigi Pearl Oyster', desc: 'Velvety clusters cultivated on organic coffee pulp', href: '/shop/kinigi-pearl-oyster' },
+      { name: 'Musanze Cremini & Button', desc: 'Dense volcanic earth Agaricus for kitchen bistros', href: '/shop/musanze-cremini-button' },
+      { name: 'Virunga Oak Shiitake', desc: 'Hardwood log cultivated, rich umami depth', href: '/shop/virunga-oak-shiitake' },
+      { name: 'Kinigi Golden Oyster', desc: 'Vibrant yellow fronds with toasted cashew notes', href: '/shop/kinigi-golden-oyster' },
+      { name: 'Highland King Trumpet', desc: 'Dense thick stems for pan-searing & culinary steaks', href: '/shop/highland-king-trumpet' },
+      { name: 'Rwandan Termitomyces (Imegeri)', desc: 'Wild-foraged sacred termite mound delicacy', href: '/shop/rwanda-termitomyces-imegeri' },
+      { name: 'Virunga Wood Ear', desc: 'Sun-cured cloud forest fronds with distinctive snap', href: '/shop/virunga-wood-ear' },
     ],
   },
 ]
@@ -275,12 +269,12 @@ const Navbar: React.FC = () => {
               className="hidden lg:block absolute top-20 left-0 w-full bg-volcanic-deep/98 backdrop-blur-2xl border-b border-oxidized-copper/30 shadow-2xl overflow-hidden z-40"
             >
               <div className="max-w-7xl mx-auto px-8 py-10">
-                <div className="grid grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   {MEGA_MENU_COLUMNS.map((column, colIdx) => (
                     <div
                       key={colIdx}
                       className={`flex flex-col ${
-                        colIdx < 3 ? 'border-r border-white/10 pr-6' : ''
+                        colIdx < 2 ? 'md:border-r md:border-white/10 md:pr-8' : ''
                       }`}
                     >
                       <h3 className="font-serif text-sm font-bold text-spore-gold tracking-wider uppercase mb-1 flex items-center gap-2">
@@ -309,14 +303,14 @@ const Navbar: React.FC = () => {
                         ))}
                       </ul>
 
-                      {colIdx === 3 && (
+                      {colIdx === 0 && (
                         <div className="mt-6 pt-4 border-t border-white/10">
                           <Link
                             to="/shop"
                             onClick={() => setIsMegaMenuOpen(false)}
                             className="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-oxidized-copper hover:text-spore-gold transition-colors"
                           >
-                            <span>Explore Full Dispensary</span>
+                            <span>View All 11 Harvests</span>
                             <ArrowRight className="w-3.5 h-3.5" />
                           </Link>
                         </div>

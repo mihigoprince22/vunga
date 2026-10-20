@@ -15,6 +15,7 @@ import {
 } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { useVunga } from '../context/VungaContext'
+import CheckoutModal from './CheckoutModal'
 
 type PaymentMethod = 'momo' | 'bk' | 'card'
 
@@ -45,6 +46,7 @@ const CartDrawer: React.FC = () => {
 
   const [selectedPayment, setSelectedPayment] = useState<PaymentMethod>('momo')
   const [isCheckingOut, setIsCheckingOut] = useState(false)
+  const [isCheckoutModalOpen, setIsCheckoutModalOpen] = useState(false)
   const navigate = useNavigate()
 
   // Calculate gift progress percentage towards Tier 2 (the grand milestone)
@@ -61,16 +63,9 @@ const CartDrawer: React.FC = () => {
     setIsCheckingOut(true)
     setTimeout(() => {
       setIsCheckingOut(false)
-      alert(
-        `Order initiated via ${
-          selectedPayment === 'momo'
-            ? 'MTN Mobile Money (+250 MoMoPay)'
-            : selectedPayment === 'bk'
-            ? 'Bank of Kigali / UrubutoPay'
-            : 'Credit Card / Apple Pay'
-        }. Kigali same-day dispatch active!`
-      )
-    }, 800)
+      closeCart()
+      setIsCheckoutModalOpen(true)
+    }, 600)
   }
 
   const handleShopRedirect = () => {
@@ -79,7 +74,8 @@ const CartDrawer: React.FC = () => {
   }
 
   return (
-    <AnimatePresence>
+    <>
+      <AnimatePresence>
       {isCartOpen && (
         <div className="fixed inset-0 z-50 overflow-hidden">
           {/* Overlay Backdrop */}
@@ -484,7 +480,10 @@ const CartDrawer: React.FC = () => {
                     className="w-full py-4 bg-oxidized-copper hover:bg-oxidized-copper/90 text-white font-sans text-xs uppercase tracking-widest font-semibold transition-all duration-200 shadow-xl shadow-oxidized-copper/20 flex items-center justify-center gap-2 active:scale-95 disabled:opacity-50"
                   >
                     {isCheckingOut ? (
-                      <span className="animate-pulse">Authorizing Ritual...</span>
+                      <span className="animate-pulse flex items-center gap-2">
+                        <Sparkles className="w-4 h-4 text-spore-gold" />
+                        Authorizing Ritual...
+                      </span>
                     ) : (
                       <>
                         <ShieldCheck className="w-4 h-4 text-spore-gold" />
@@ -500,6 +499,12 @@ const CartDrawer: React.FC = () => {
         </div>
       )}
     </AnimatePresence>
+
+    <CheckoutModal
+      isOpen={isCheckoutModalOpen}
+      onClose={() => setIsCheckoutModalOpen(false)}
+    />
+  </>
   )
 }
 

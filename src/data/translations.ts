@@ -9,6 +9,7 @@ export interface TranslationDictionary {
     tastingBar: string;
     wholesale: string;
     quiz: string;
+    findMatch: string;
     cart: string;
     language: string;
     currency: string;
@@ -200,6 +201,7 @@ export const translations: Record<Language, TranslationDictionary> = {
       tastingBar: 'Kigali Tasting Bar',
       wholesale: 'Chef & Wholesale',
       quiz: 'Mushroom Matcher',
+      findMatch: 'FIND YOUR MATCH',
       cart: 'Apothecary Bag',
       language: 'Language',
       currency: 'Currency',
@@ -389,6 +391,7 @@ export const translations: Record<Language, TranslationDictionary> = {
       tastingBar: 'Akabari ko Gusogongera i Kigali',
       wholesale: 'Kurangura ku Mahoteli n\'Abatetsi',
       quiz: 'Guhitamo Igihumyo Cyawe',
+      findMatch: 'SHAKA IGIKWIRIYE',
       cart: 'Igikapu Cy\'Ibihumyo',
       language: 'Ururimi',
       currency: 'Ifaranga',
@@ -578,6 +581,7 @@ export const translations: Record<Language, TranslationDictionary> = {
       tastingBar: 'Bar de Dégustation à Kigali',
       wholesale: 'Chefs & Vente en Gros',
       quiz: 'Diagnostique Mycologique',
+      findMatch: 'TROUVEZ VOTRE RITUEL',
       cart: 'Panier Apothicaire',
       language: 'Langue',
       currency: 'Devise',

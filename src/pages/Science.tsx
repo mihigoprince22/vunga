@@ -293,15 +293,15 @@ const Science = () => {
   return (
     <div className="min-h-screen bg-kinigi-paper text-volcanic-ash">
       {/* 1. HERO SECTION */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-volcanic-deep text-kinigi-mist pt-24 pb-20">
-        {/* Background Image with Dark Gradient Overlay */}
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#141515] text-[#EAE8E1] pt-24 pb-20">
+        {/* Background Image with Scrim Gradient Overlay */}
         <div className="absolute inset-0 z-0">
           <img
             src="/assets/06_extraction-lab-copper-still-16x9_4K.jpg"
             alt="VŪNGA Copper Still Extraction Lab"
-            className="w-full h-full object-cover opacity-35"
+            className="w-full h-full object-cover opacity-30"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-volcanic-deep via-volcanic-deep/75 to-volcanic-deep/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#141515]/90 via-[#141515]/75 to-[#141515]" />
           <div className="absolute inset-0 bg-[radial-gradient(#B86B43_1px,transparent_1px)] [background-size:24px_24px] opacity-10" />
         </div>
 
@@ -313,31 +313,31 @@ const Science = () => {
             transition={{ duration: 0.8 }}
             className="lg:col-span-7 space-y-6"
           >
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-oxidized-copper/15 border border-oxidized-copper/40 text-spore-gold text-xs font-mono tracking-widest uppercase backdrop-blur-md">
-              <FlaskConical className="w-3.5 h-3.5 text-spore-gold" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#B86B43]/20 border border-[#B86B43]/50 text-[#D4AF6A] text-xs font-mono tracking-[0.2em] uppercase backdrop-blur-md">
+              <FlaskConical className="w-3.5 h-3.5 text-[#D4AF6A]" />
               <span>Apothecary Lab Standards · 2,400m Elevation</span>
             </div>
 
-            <h1 className="font-serif font-light text-kinigi-mist text-4xl sm:text-5xl md:text-6xl tracking-tight leading-[1.12]">
+            <h1 className="font-serif font-light text-[#EAE8E1] text-4xl sm:text-5xl md:text-6xl tracking-tight leading-[1.12]">
               The Science of Extraction
             </h1>
 
-            <p className="font-sans text-lg sm:text-xl text-kinigi-mist/85 font-normal leading-relaxed max-w-2xl">
+            <p className="font-sans text-lg sm:text-xl text-[#EAE8E1]/85 font-normal leading-relaxed max-w-2xl">
               Dual water and ethanol extraction from 100% organic fruiting bodies. Zero mycelium-on-grain fillers. Third-party verified.
             </p>
 
             {/* Quick Micro Badges */}
-            <div className="pt-2 grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs font-mono text-kinigi-mist/75">
-              <div className="p-3 bg-volcanic-ash/40 border border-white/10 rounded-sm">
-                <span className="text-spore-gold block font-semibold text-sm">&gt;30%</span>
+            <div className="pt-2 grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs font-mono text-[#EAE8E1]/80">
+              <div className="p-3 bg-white/5 border border-white/10 rounded-sm">
+                <span className="text-[#D4AF6A] block font-semibold text-sm">&gt;30%</span>
                 Beta-D-Glucans Verified
               </div>
-              <div className="p-3 bg-volcanic-ash/40 border border-white/10 rounded-sm">
+              <div className="p-3 bg-white/5 border border-white/10 rounded-sm">
                 <span className="text-emerald-400 block font-semibold text-sm">&lt;2%</span>
                 Zero Starch / Alpha-Glucan
               </div>
-              <div className="p-3 bg-volcanic-ash/40 border border-white/10 rounded-sm col-span-2 sm:col-span-1">
-                <span className="text-oxidized-copper block font-semibold text-sm">100%</span>
+              <div className="p-3 bg-white/5 border border-white/10 rounded-sm col-span-2 sm:col-span-1">
+                <span className="text-[#B86B43] block font-semibold text-sm">100%</span>
                 Fruiting Body Only
               </div>
             </div>
@@ -345,14 +345,14 @@ const Science = () => {
             <div className="pt-4 flex flex-wrap gap-4 items-center">
               <a
                 href="#coa-lookup"
-                className="px-6 py-3.5 bg-oxidized-copper hover:bg-oxidized-copper/90 text-white font-sans text-xs uppercase tracking-widest font-semibold transition-all shadow-lg shadow-oxidized-copper/20 flex items-center gap-2"
+                className="px-6 py-3.5 bg-[#B86B43] hover:bg-[#a15833] text-white font-sans text-xs uppercase tracking-widest font-semibold transition-all shadow-lg shadow-[#B86B43]/25 flex items-center gap-2"
               >
                 <span>Verify Your Batch COA</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
               <a
                 href="#comparison"
-                className="px-6 py-3.5 bg-transparent hover:bg-white/5 border border-kinigi-mist/30 text-kinigi-mist font-sans text-xs uppercase tracking-widest font-semibold transition-all backdrop-blur-sm"
+                className="px-6 py-3.5 bg-transparent hover:bg-white/5 border border-[#EAE8E1]/30 text-[#EAE8E1] font-sans text-xs uppercase tracking-widest font-semibold transition-all backdrop-blur-sm"
               >
                 Fruiting Body vs Grain
               </a>

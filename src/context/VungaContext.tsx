@@ -353,7 +353,9 @@ export const VungaProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   const t = useCallback(
     (key: string, vars?: Record<string, string | number>): string => {
-      const parts = key.split('.');
+      // Normalize common keys like NAV.FINDMATCH -> nav.findMatch
+      const normalizedKey = key.toLowerCase() === 'nav.findmatch' ? 'nav.findMatch' : key;
+      const parts = normalizedKey.split('.');
       let current: any = translations[language];
       for (const part of parts) {
         if (current && typeof current === 'object' && part in current) {
@@ -375,6 +377,11 @@ export const VungaProvider: React.FC<{ children: React.ReactNode }> = ({ childre
           }
         }
         current = fallback;
+      }
+
+      // Hard safety check for findMatch button
+      if (current === undefined && (normalizedKey === 'nav.findMatch' || key.toUpperCase() === 'NAV.FINDMATCH')) {
+        current = language === 'RW' ? 'SHAKA IGIKWIRIYE' : language === 'FR' ? 'TROUVEZ VOTRE RITUEL' : 'FIND YOUR MATCH';
       }
 
       let result = typeof current === 'string' ? current : key;

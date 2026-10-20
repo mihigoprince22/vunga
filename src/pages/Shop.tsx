@@ -1,5 +1,5 @@
-import React, { useState, useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useMemo, useEffect } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingBag, Sparkles, RotateCcw } from 'lucide-react';
 import { products } from '../data/products';
@@ -24,9 +24,21 @@ interface BenefitOption {
 
 const Shop: React.FC = () => {
   const { formatPrice, addToCart, openCart, language } = useVunga();
+  const [searchParams] = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>('all');
   const [selectedBenefit, setSelectedBenefit] = useState<BenefitFilter>('all');
   const [hoveredCardId, setHoveredCardId] = useState<number | null>(null);
+
+  useEffect(() => {
+    const needParam = searchParams.get('need') || searchParams.get('benefit');
+    const catParam = searchParams.get('category');
+    if (needParam && ['focus', 'calm', 'immunity', 'energy', 'culinary'].includes(needParam)) {
+      setSelectedBenefit(needParam as BenefitFilter);
+    }
+    if (catParam && ['functional', 'culinary', 'bundles'].includes(catParam)) {
+      setSelectedCategory(catParam as CategoryFilter);
+    }
+  }, [searchParams]);
 
   // Category pills as requested in specification
   const categoryOptions: CategoryOption[] = [

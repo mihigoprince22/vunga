@@ -232,22 +232,37 @@ const Origin = () => {
 
           {/* Video Container */}
           <div className="relative border-2 border-oxidized-copper/50 p-2 sm:p-3 bg-volcanic-ash/90 shadow-2xl">
-            <div className="relative aspect-video w-full overflow-hidden bg-black rounded-lg">
+            <div className="relative aspect-video w-full overflow-hidden bg-volcanic-deep rounded-lg">
+              {/* Fallback image in background behind video so no black flash occurs */}
+              <img
+                src="/assets/01_I01_anchor-kinigi-sanctuary-16x9_4K.jpg"
+                alt="Kinigi Sanctuary Background Fallback"
+                className="absolute inset-0 w-full h-full object-cover opacity-80"
+              />
+
               <video
                 autoPlay
                 loop
                 muted
                 playsInline
+                preload="auto"
                 poster="/assets/18_keyframe-video-02-fruiting-timelapse-16x9_4K.jpg"
-                src="/assets/18_video-02-fruiting-timelapse-loop-16x9.mp4"
-                className="w-full rounded-lg h-full object-cover"
-              />
+                className="relative z-10 w-full h-full object-cover rounded-lg"
+              >
+                <source src="/assets/18_video-02-fruiting-timelapse-loop-16x9.mp4" type="video/mp4" />
+                <img
+                  src="/assets/18_keyframe-video-02-fruiting-timelapse-16x9_4K.jpg"
+                  alt="Lion's Mane Fruiting Time-Lapse"
+                  className="w-full h-full object-cover"
+                />
+              </video>
+
               {/* Corner Watermarks */}
-              <div className="absolute top-4 left-4 z-10 bg-volcanic-deep/85 px-3 py-1.5 border border-white/10 text-[11px] font-mono text-kinigi-mist flex items-center gap-2 backdrop-blur-md">
+              <div className="absolute top-4 left-4 z-20 bg-volcanic-deep/85 px-3 py-1.5 border border-white/10 text-[11px] font-mono text-kinigi-mist flex items-center gap-2 backdrop-blur-md">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 KINIGI SANCTUARY CHAMBER 02
               </div>
-              <div className="absolute bottom-4 right-4 z-10 bg-volcanic-deep/85 px-3 py-1.5 border border-white/10 text-[11px] font-mono text-spore-gold backdrop-blur-md">
+              <div className="absolute bottom-4 right-4 z-20 bg-volcanic-deep/85 px-3 py-1.5 border border-white/10 text-[11px] font-mono text-spore-gold backdrop-blur-md">
                 14 DAYS COMPRESSED TO 12 SEC
               </div>
             </div>

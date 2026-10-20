@@ -23,12 +23,17 @@ import { useVunga } from '../context/VungaContext';
 import { products, Product } from '../data/products';
 
 interface BenefitTab {
-  id: 'focus' | 'calm' | 'immunity' | 'energy' | 'culinary';
+  id: 'all' | 'focus' | 'calm' | 'immunity' | 'energy' | 'culinary';
   title: string;
   subtitle: string;
 }
 
 const BENEFIT_TABS: BenefitTab[] = [
+  {
+    id: 'all',
+    title: 'All Harvests',
+    subtitle: 'Explore the full 12-species volcanic dispensary',
+  },
   {
     id: 'focus',
     title: 'Focus & Clarity',
@@ -126,7 +131,8 @@ const Home: React.FC = () => {
   // Filtered products for active benefit tab
   const filteredProducts = useMemo(() => {
     const currentBenefit = BENEFIT_TABS[activeTab].id;
-    return products.filter((p) => p.benefits.includes(currentBenefit));
+    if (currentBenefit === 'all') return products;
+    return products.filter((p) => (p.benefits as string[]).includes(currentBenefit));
   }, [activeTab]);
 
   // Bundle calculations
@@ -220,18 +226,22 @@ const Home: React.FC = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
-              <Link
-                to="/shop"
-                className="px-8 py-4 bg-[#B86B43] hover:bg-[#a15833] text-white font-mono uppercase tracking-[0.14em] text-sm font-semibold transition-all duration-300 shadow-lg shadow-[#B86B43]/25 flex items-center justify-center gap-3 group text-center"
+              <a
+                href="#apothecary-shop"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('apothecary-shop')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="px-8 py-4 bg-[#B86B43] hover:bg-[#a15833] text-white font-mono uppercase tracking-[0.14em] text-sm font-semibold transition-all duration-300 shadow-lg shadow-[#B86B43]/25 flex items-center justify-center gap-3 group text-center cursor-pointer"
               >
                 <span>SHOP THE HARVEST</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </Link>
+              </a>
 
               <button
                 type="button"
                 onClick={openQuiz}
-                className="px-8 py-4 border-2 border-[#EAE8E1]/40 hover:border-[#EAE8E1] hover:bg-white/5 bg-transparent text-[#EAE8E1] font-mono uppercase tracking-[0.14em] text-sm font-semibold transition-all duration-300 backdrop-blur-sm text-center"
+                className="px-8 py-4 border-2 border-[#EAE8E1]/40 hover:border-[#EAE8E1] hover:bg-white/5 bg-transparent text-[#EAE8E1] font-mono uppercase tracking-[0.14em] text-sm font-semibold transition-all duration-300 backdrop-blur-sm text-center cursor-pointer"
               >
                 TAKE THE MUSHROOM MATCHER
               </button>
@@ -265,14 +275,14 @@ const Home: React.FC = () => {
       {/* ========================================================================= */}
       {/* SECTION 2: First-Person "Shop by Need" Switcher (bg-[#EAE8E1])            */}
       {/* ========================================================================= */}
-      <section className="bg-[#EAE8E1] py-16 lg:py-24 border-b border-[#222423]/10">
+      <section id="apothecary-shop" className="bg-[#EAE8E1] py-16 lg:py-24 border-b border-[#222423]/10 text-[#222423]">
         <div className="max-w-7xl mx-auto px-6">
           {/* Section Title */}
           <div className="text-center mb-12">
             <h2 className="font-serif italic text-3xl lg:text-4xl text-[#222423] tracking-tight">
               &ldquo;What brings you to the apothecary?&rdquo;
             </h2>
-            <p className="font-sans text-xs font-mono uppercase tracking-widest text-[#222423]/60 mt-3">
+            <p className="font-sans text-xs font-mono uppercase tracking-widest text-[#222423]/70 mt-3">
               Tailored Botanical Formulations For Your Vitality Needs
             </p>
           </div>
@@ -286,13 +296,13 @@ const Home: React.FC = () => {
                   key={tab.id}
                   type="button"
                   onClick={() => setActiveTab(idx)}
-                  className={`flex flex-col text-left px-5 py-3 rounded-lg transition-all duration-300 flex-shrink-0 min-w-[200px] sm:min-w-[220px] ${
+                  className={`flex flex-col text-left px-5 py-3 rounded-lg transition-all duration-300 flex-shrink-0 min-w-[200px] sm:min-w-[220px] cursor-pointer ${
                     isActive
-                      ? 'bg-[#222423] text-[#EAE8E1] shadow-md shadow-[#222423]/20'
-                      : 'bg-[#F4F2EC] text-[#222423] border border-[#222423]/10 hover:border-[#B86B43]/40'
+                      ? 'bg-[#222423] text-[#EAE8E1] shadow-md shadow-[#222423]/20 ring-1 ring-[#222423]'
+                      : 'bg-[#F4F2EC] text-[#222423] border border-[#222423]/15 hover:border-[#B86B43]/50 hover:bg-[#EAE8E1]'
                   }`}
                 >
-                  <span className="font-serif font-bold text-sm tracking-wide">
+                  <span className={`font-serif font-bold text-sm tracking-wide ${isActive ? 'text-[#EAE8E1]' : 'text-[#222423]'}`}>
                     {tab.title}
                   </span>
                   <span
@@ -316,16 +326,16 @@ const Home: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -16 }}
                 transition={{ duration: 0.35, ease: 'easeOut' }}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-center"
               >
                 {filteredProducts.map((product) => (
                   <Link
                     key={product.id}
                     to={`/shop/${product.slug}`}
-                    className="group bg-[#F4F2EC] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-[#222423]/10 flex flex-col"
+                    className="group bg-[#F4F2EC] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-[#222423]/15 flex flex-col text-[#222423]"
                   >
                     {/* Image Container with Two-State Hover Crossfade */}
-                    <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-[#141515]">
+                    <div className="relative aspect-[4/5] w-full overflow-hidden rounded-t-xl bg-[#141515]">
                       <img
                         src={product.image}
                         alt={product.name}
@@ -339,29 +349,46 @@ const Home: React.FC = () => {
 
                       {/* Fresh Badge */}
                       {product.isFresh && (
-                        <span className="absolute top-3 left-3 z-10 bg-[#527361] text-white text-[10px] uppercase font-mono tracking-wider px-2 py-0.5 rounded shadow-sm">
+                        <span className="absolute top-3 left-3 z-10 bg-[#527361] text-white text-[10px] uppercase font-mono tracking-wider px-2 py-0.5 rounded shadow-sm font-semibold">
                           FRESH
                         </span>
                       )}
 
                       {/* Subscribable Badge */}
                       {product.isSubscribable && (
-                        <span className="absolute top-3 right-3 z-10 bg-[#B86B43] text-white text-[10px] uppercase font-mono tracking-wider px-2 py-0.5 rounded shadow-sm">
+                        <span className="absolute top-3 right-3 z-10 bg-[#B86B43] text-white text-[10px] uppercase font-mono tracking-wider px-2 py-0.5 rounded shadow-sm font-semibold">
                           SAVE 15%
                         </span>
                       )}
                     </div>
 
-                    {/* Card Body */}
-                    <div className="p-4 flex flex-col flex-1 justify-between bg-[#F4F2EC]">
+                    {/* Card Body with strict explicit high-contrast text */}
+                    <div className="p-4 flex flex-col flex-1 justify-between bg-[#F4F2EC] text-[#222423] rounded-b-xl border-t border-[#222423]/10">
                       <div>
+                        <div className="flex items-center justify-between gap-2 mb-1.5">
+                          <span className="font-mono text-[10px] uppercase tracking-wider text-[#527361] font-semibold">
+                            {product.category === 'functional'
+                              ? 'Dual Extract'
+                              : product.category === 'cacao'
+                              ? 'Dark Cacao'
+                              : 'Highland Harvest'}
+                          </span>
+                          {product.betaGlucans && (
+                            <span className="font-mono text-[9px] text-[#222423]/70 font-medium">
+                              {product.betaGlucans}
+                            </span>
+                          )}
+                        </div>
                         <h3 className="font-serif font-bold text-sm uppercase tracking-[0.14em] text-[#222423] group-hover:text-[#B86B43] transition-colors line-clamp-1">
                           {product.name}
                         </h3>
-                        <p className="font-sans text-xs italic text-[#222423]/60 mt-1 line-clamp-1">
+                        <p className="font-sans text-xs italic text-[#527361] mt-1 line-clamp-1 font-medium">
                           {product.speciesLatin || product.species}
                         </p>
-                        <p className="font-mono text-sm font-semibold text-[#B86B43] mt-2">
+                        <p className="font-mono text-xs text-[#222423]/70 mt-1 line-clamp-1">
+                          {product.weight}
+                        </p>
+                        <p className="font-mono text-sm font-bold text-[#222423] mt-2.5">
                           {formatPrice(product.priceRWF, product.priceUSD)}
                         </p>
                       </div>
@@ -377,8 +404,9 @@ const Home: React.FC = () => {
                             1,
                             product.formats?.[0] || product.weight || 'Standard'
                           );
+                          openCart();
                         }}
-                        className="w-full py-2.5 bg-[#222423] hover:bg-[#B86B43] text-[#EAE8E1] text-xs uppercase tracking-widest font-mono transition-colors duration-200 mt-4 flex items-center justify-center gap-2 rounded"
+                        className="w-full py-2.5 bg-[#222423] hover:bg-[#B86B43] text-[#EAE8E1] text-xs uppercase tracking-widest font-mono transition-colors duration-200 mt-4 flex items-center justify-center gap-2 rounded cursor-pointer font-semibold shadow-xs"
                       >
                         <ShoppingBag className="w-3.5 h-3.5" />
                         <span>Add to Bag</span>
