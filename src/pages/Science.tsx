@@ -4,6 +4,7 @@ import { motion, useInView, useSpring } from 'framer-motion';
 import {
   Check,
   X,
+  Minus,
   Search,
   Download,
   Printer,
@@ -419,27 +420,28 @@ const Science = () => {
           </p>
         </div>
 
-        {/* Side-by-Side Comparison Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+        {/* Side-by-Side Comparison Cards in Luxury Apothecary Palette */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch max-w-5xl mx-auto">
           {/* Column 1: VŪNGA 100% Fruiting Body */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-kinigi-paper border-t-4 border-oxidized-copper rounded-none p-6 sm:p-8 shadow-xl border border-volcanic-ash/10 relative flex flex-col justify-between"
+            className="rounded-2xl bg-[#1C2420] text-[#EAE8E1] border border-[#B86B43]/50 p-6 sm:p-8 shadow-xl flex flex-col justify-between"
           >
             {/* Crown Tag */}
-            <div className="flex items-center justify-between mb-6 pb-4 border-b border-volcanic-ash/10">
+            <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
               <div>
-                <span className="text-[10px] font-mono tracking-widest uppercase text-oxidized-copper font-semibold block mb-1">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#B86B43] text-[#EAE8E1] text-[10px] font-sans font-semibold tracking-wider uppercase mb-2">
+                  <Sparkles className="w-3 h-3 text-[#D4AF6A]" />
                   VŪNGA Gold Standard
                 </span>
-                <h3 className="font-serif text-2xl font-bold text-volcanic-deep">
+                <h3 className="font-serif text-2xl font-bold text-white">
                   100% Fruiting Body
                 </h3>
               </div>
-              <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-800">
+              <div className="w-10 h-10 rounded-full bg-[#527361]/30 border border-[#527361] flex items-center justify-center text-[#D4AF6A]">
                 <Award className="w-5 h-5" />
               </div>
             </div>
@@ -447,129 +449,129 @@ const Science = () => {
             {/* Comparison Rows */}
             <div className="space-y-4 font-sans text-sm flex-1">
               {/* Row 1 */}
-              <div className="p-4 bg-white/70 rounded-none border border-volcanic-ash/5 flex items-start gap-4">
-                <div className="mt-0.5 w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
-                  <Check className="w-4 h-4 stroke-[2.5]" />
+              <div className="p-4 bg-black/30 rounded-xl border border-white/5 flex items-start gap-4">
+                <div className="mt-0.5 w-6 h-6 rounded-full bg-[#527361]/30 text-[#D4AF6A] flex items-center justify-center shrink-0">
+                  <Check className="w-3.5 h-3.5 stroke-[2.5]" />
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs uppercase tracking-wider text-volcanic-ash/70">
+                    <span className="font-sans text-xs uppercase tracking-wider text-[#D4AF6A] font-semibold">
                       Beta-D-Glucans
                     </span>
-                    <span className="font-mono font-bold text-emerald-700 text-lg">
+                    <span className="font-serif font-bold text-white text-base">
                       &gt;30% Verified
                     </span>
                   </div>
-                  <p className="text-xs text-volcanic-ash/70 mt-1">
+                  <p className="text-xs text-[#EAE8E1]/70 mt-1">
                     Therapeutically active (1,3)-(1,6)-beta-D-glucans bound naturally in structural fungal chitin.
                   </p>
                 </div>
               </div>
 
               {/* Row 2 */}
-              <div className="p-4 bg-white/70 rounded-none border border-volcanic-ash/5 flex items-start gap-4">
-                <div className="mt-0.5 w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
-                  <Check className="w-4 h-4 stroke-[2.5]" />
+              <div className="p-4 bg-black/30 rounded-xl border border-white/5 flex items-start gap-4">
+                <div className="mt-0.5 w-6 h-6 rounded-full bg-[#527361]/30 text-[#D4AF6A] flex items-center justify-center shrink-0">
+                  <Check className="w-3.5 h-3.5 stroke-[2.5]" />
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs uppercase tracking-wider text-volcanic-ash/70">
+                    <span className="font-sans text-xs uppercase tracking-wider text-[#D4AF6A] font-semibold">
                       Alpha-Glucan Starch
                     </span>
-                    <span className="font-mono font-bold text-emerald-700 text-base">
+                    <span className="font-serif font-bold text-white text-base">
                       &lt;2% (Essentially Zero)
                     </span>
                   </div>
-                  <p className="text-xs text-volcanic-ash/70 mt-1">
+                  <p className="text-xs text-[#EAE8E1]/70 mt-1">
                     Laboratory verified absence of grain fillers, rice starch, or cereal carbohydrates.
                   </p>
                 </div>
               </div>
 
               {/* Row 3 */}
-              <div className="p-4 bg-white/70 rounded-none border border-volcanic-ash/5 flex items-start gap-4">
-                <div className="mt-0.5 w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
-                  <Check className="w-4 h-4 stroke-[2.5]" />
+              <div className="p-4 bg-black/30 rounded-xl border border-white/5 flex items-start gap-4">
+                <div className="mt-0.5 w-6 h-6 rounded-full bg-[#527361]/30 text-[#D4AF6A] flex items-center justify-center shrink-0">
+                  <Check className="w-3.5 h-3.5 stroke-[2.5]" />
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs uppercase tracking-wider text-volcanic-ash/70">
+                    <span className="font-sans text-xs uppercase tracking-wider text-[#D4AF6A] font-semibold">
                       Extraction Method
                     </span>
-                    <span className="font-mono font-bold text-volcanic-deep text-sm">
-                      Dual Water + Ethanol
+                    <span className="font-serif font-bold text-white text-base">
+                      Dual Hot-Water & Ethanol
                     </span>
                   </div>
-                  <p className="text-xs text-volcanic-ash/70 mt-1">
-                    Unlocks both water-soluble beta-glucans and alcohol-soluble triterpenes & hericenones.
+                  <p className="text-xs text-[#EAE8E1]/70 mt-1">
+                    Full-spectrum bio-fractionation unlocking water-soluble polysaccharides and alcohol-soluble triterpenoids.
                   </p>
                 </div>
               </div>
 
               {/* Row 4 */}
-              <div className="p-4 bg-white/70 rounded-none border border-volcanic-ash/5 flex items-start gap-4">
-                <div className="mt-0.5 w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
-                  <Check className="w-4 h-4 stroke-[2.5]" />
+              <div className="p-4 bg-black/30 rounded-xl border border-white/5 flex items-start gap-4">
+                <div className="mt-0.5 w-6 h-6 rounded-full bg-[#527361]/30 text-[#D4AF6A] flex items-center justify-center shrink-0">
+                  <Check className="w-3.5 h-3.5 stroke-[2.5]" />
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs uppercase tracking-wider text-volcanic-ash/70">
-                      Growing Substrate
+                    <span className="font-sans text-xs uppercase tracking-wider text-[#D4AF6A] font-semibold">
+                      Bioactive Diversity
                     </span>
-                    <span className="font-mono font-semibold text-volcanic-deep text-sm">
-                      Volcanic Mineral & Juncao/Hardwood
+                    <span className="font-serif font-bold text-white text-base">
+                      Full Terpenoids & Phenolics
                     </span>
                   </div>
-                  <p className="text-xs text-volcanic-ash/70 mt-1">
-                    Rich in volcanic trace basalt from Mount Karisimbi, stimulating superior secondary metabolites.
+                  <p className="text-xs text-[#EAE8E1]/70 mt-1">
+                    Rich in hericenones, erinacines, ganoderic acids, and ergosterol synthesized only during fruiting maturation.
                   </p>
                 </div>
               </div>
 
               {/* Row 5 */}
-              <div className="p-4 bg-white/70 rounded-none border border-volcanic-ash/5 flex items-start gap-4">
-                <div className="mt-0.5 w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
-                  <Check className="w-4 h-4 stroke-[2.5]" />
+              <div className="p-4 bg-black/30 rounded-xl border border-white/5 flex items-start gap-4">
+                <div className="mt-0.5 w-6 h-6 rounded-full bg-[#527361]/30 text-[#D4AF6A] flex items-center justify-center shrink-0">
+                  <Check className="w-3.5 h-3.5 stroke-[2.5]" />
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs uppercase tracking-wider text-volcanic-ash/70">
-                      Mushroom Source
+                    <span className="font-sans text-xs uppercase tracking-wider text-[#D4AF6A] font-semibold">
+                      Cultivation Medium
                     </span>
-                    <span className="font-mono font-semibold text-volcanic-deep text-sm">
-                      100% Fruiting Body
+                    <span className="font-serif font-bold text-white text-base">
+                      Mineral-Dense Volcanic Substrate
                     </span>
                   </div>
-                  <p className="text-xs text-volcanic-ash/70 mt-1">
-                    Only fully mature mushroom caps and stems; harvested at peak spore release in Kinigi.
+                  <p className="text-xs text-[#EAE8E1]/70 mt-1">
+                    Substrate formulated with volcanic basalt, Juncao grass, and local hardwood sawdust at 2,400m elevation.
                   </p>
                 </div>
               </div>
 
               {/* Row 6 */}
-              <div className="p-4 bg-white/70 rounded-none border border-volcanic-ash/5 flex items-start gap-4">
-                <div className="mt-0.5 w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
-                  <Check className="w-4 h-4 stroke-[2.5]" />
+              <div className="p-4 bg-black/30 rounded-xl border border-white/5 flex items-start gap-4">
+                <div className="mt-0.5 w-6 h-6 rounded-full bg-[#527361]/30 text-[#D4AF6A] flex items-center justify-center shrink-0">
+                  <Check className="w-3.5 h-3.5 stroke-[2.5]" />
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs uppercase tracking-wider text-volcanic-ash/70">
+                    <span className="font-sans text-xs uppercase tracking-wider text-[#D4AF6A] font-semibold">
                       Third-Party Testing
                     </span>
-                    <span className="font-mono font-semibold text-emerald-700 text-sm">
+                    <span className="font-serif font-bold text-[#D4AF6A] text-base">
                       Every Batch Verified
                     </span>
                   </div>
-                  <p className="text-xs text-volcanic-ash/70 mt-1">
+                  <p className="text-xs text-[#EAE8E1]/70 mt-1">
                     Full HPLC beta-glucan assay, heavy metals (&lt;0.01 ppm), microbial screening, and NMR species ID.
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-volcanic-ash/10 flex items-center justify-between text-xs font-mono text-volcanic-ash/60">
+            <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-sans text-[#D4AF6A]">
               <span>Origin: Kinigi, Musanze District</span>
-              <span className="text-oxidized-copper font-semibold">100% Active Fungus</span>
+              <span className="text-[#B86B43] font-semibold">100% Active Fungus</span>
             </div>
           </motion.div>
 
@@ -579,174 +581,174 @@ const Science = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="bg-volcanic-ash/5 border-t-4 border-red-500/80 rounded-none p-6 sm:p-8 shadow-md border border-volcanic-ash/10 relative flex flex-col justify-between"
+            className="rounded-2xl bg-[#E5E2D9] text-[#222423]/80 border border-[#222423]/15 p-6 sm:p-8 shadow-md flex flex-col justify-between"
           >
             {/* Header */}
-            <div className="flex items-center justify-between mb-6 pb-4 border-b border-volcanic-ash/10">
+            <div className="flex items-center justify-between mb-6 pb-4 border-b border-[#222423]/10">
               <div>
-                <span className="text-[10px] font-mono tracking-widest uppercase text-red-600 font-semibold block mb-1">
-                  Mass Market Commercial Standard
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#222423]/15 text-[#222423]/70 text-[10px] font-sans font-semibold tracking-wider uppercase mb-2">
+                  Industry Filler
                 </span>
-                <h3 className="font-serif text-2xl font-bold text-volcanic-ash/80">
+                <h3 className="font-serif text-2xl font-bold text-[#222423]/90">
                   Typical Mycelium-on-Grain
                 </h3>
               </div>
-              <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-600">
-                <X className="w-5 h-5" />
+              <div className="w-10 h-10 rounded-full bg-[#8C3F2B]/15 border border-[#8C3F2B]/30 flex items-center justify-center text-[#8C3F2B]">
+                <Minus className="w-5 h-5 stroke-[2.5]" />
               </div>
             </div>
 
             {/* Comparison Rows */}
             <div className="space-y-4 font-sans text-sm flex-1">
               {/* Row 1 */}
-              <div className="p-4 bg-white/40 rounded-none border border-red-200/50 flex items-start gap-4">
-                <div className="mt-0.5 w-6 h-6 rounded-full bg-red-100 text-red-600 flex items-center justify-center shrink-0">
-                  <X className="w-4 h-4 stroke-[2.5]" />
+              <div className="p-4 bg-white/50 rounded-xl border border-[#222423]/10 flex items-start gap-4">
+                <div className="mt-0.5 w-6 h-6 rounded-full bg-[#8C3F2B]/15 text-[#8C3F2B] flex items-center justify-center shrink-0">
+                  <Minus className="w-3.5 h-3.5 stroke-[2.5]" />
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs uppercase tracking-wider text-volcanic-ash/60">
+                    <span className="font-sans text-xs uppercase tracking-wider text-[#222423]/60 font-semibold">
                       Beta-D-Glucans
                     </span>
-                    <span className="font-mono font-bold text-red-600 text-lg">
+                    <span className="font-serif font-bold text-[#8C3F2B] text-base">
                       &lt;5% (Negligible)
                     </span>
                   </div>
-                  <p className="text-xs text-volcanic-ash/60 mt-1">
+                  <p className="text-xs text-[#222423]/60 mt-1">
                     Critically low active polysaccharides because the product is mostly unconsumed grain.
                   </p>
                 </div>
               </div>
 
               {/* Row 2 */}
-              <div className="p-4 bg-red-50/60 rounded-none border border-red-300 flex items-start gap-4">
-                <div className="mt-0.5 w-6 h-6 rounded-full bg-red-100 text-red-600 flex items-center justify-center shrink-0">
-                  <X className="w-4 h-4 stroke-[2.5]" />
+              <div className="p-4 bg-white/50 rounded-xl border border-[#222423]/10 flex items-start gap-4">
+                <div className="mt-0.5 w-6 h-6 rounded-full bg-[#8C3F2B]/15 text-[#8C3F2B] flex items-center justify-center shrink-0">
+                  <Minus className="w-3.5 h-3.5 stroke-[2.5]" />
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs uppercase tracking-wider text-red-800 font-semibold">
+                    <span className="font-sans text-xs uppercase tracking-wider text-[#222423]/60 font-semibold">
                       Alpha-Glucan Starch
                     </span>
-                    <span className="font-mono font-bold text-red-600 text-base">
-                      Up to 70% (Alarming)
+                    <span className="font-serif font-bold text-[#8C3F2B] text-base">
+                      35% – 70% Grain Starch
                     </span>
                   </div>
-                  <p className="text-xs text-red-700/80 mt-1 font-medium">
-                    Cheap cereal starch (oats, brown rice) that mimics medicinal polysaccharides on crude assays.
+                  <p className="text-xs text-[#222423]/60 mt-1">
+                    High concentration of starch filler from grain substrate that cannot be separated from mycelium.
                   </p>
                 </div>
               </div>
 
               {/* Row 3 */}
-              <div className="p-4 bg-white/40 rounded-none border border-red-200/50 flex items-start gap-4">
-                <div className="mt-0.5 w-6 h-6 rounded-full bg-red-100 text-red-600 flex items-center justify-center shrink-0">
-                  <X className="w-4 h-4 stroke-[2.5]" />
+              <div className="p-4 bg-white/50 rounded-xl border border-[#222423]/10 flex items-start gap-4">
+                <div className="mt-0.5 w-6 h-6 rounded-full bg-[#8C3F2B]/15 text-[#8C3F2B] flex items-center justify-center shrink-0">
+                  <Minus className="w-3.5 h-3.5 stroke-[2.5]" />
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs uppercase tracking-wider text-volcanic-ash/60">
+                    <span className="font-sans text-xs uppercase tracking-wider text-[#222423]/60 font-semibold">
                       Extraction Method
                     </span>
-                    <span className="font-mono font-medium text-red-700 text-sm">
-                      Hot Water Only or None (Raw Powder)
+                    <span className="font-serif font-bold text-[#222423]/80 text-base">
+                      Raw Powder or Water Only
                     </span>
                   </div>
-                  <p className="text-xs text-volcanic-ash/60 mt-1">
-                    Raw mycelial powder cannot be digested by human enzymes; fat-soluble triterpenes remain unextracted.
+                  <p className="text-xs text-[#222423]/60 mt-1">
+                    Often sold as raw freeze-dried grain powder without dual solvent extraction to break chitin bonds.
                   </p>
                 </div>
               </div>
 
               {/* Row 4 */}
-              <div className="p-4 bg-white/40 rounded-none border border-red-200/50 flex items-start gap-4">
-                <div className="mt-0.5 w-6 h-6 rounded-full bg-red-100 text-red-600 flex items-center justify-center shrink-0">
-                  <X className="w-4 h-4 stroke-[2.5]" />
+              <div className="p-4 bg-white/50 rounded-xl border border-[#222423]/10 flex items-start gap-4">
+                <div className="mt-0.5 w-6 h-6 rounded-full bg-[#8C3F2B]/15 text-[#8C3F2B] flex items-center justify-center shrink-0">
+                  <Minus className="w-3.5 h-3.5 stroke-[2.5]" />
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs uppercase tracking-wider text-volcanic-ash/60">
-                      Growing Substrate
+                    <span className="font-sans text-xs uppercase tracking-wider text-[#222423]/60 font-semibold">
+                      Bioactive Diversity
                     </span>
-                    <span className="font-mono font-medium text-volcanic-ash/70 text-sm">
-                      Oat / Rice Grain Bags
+                    <span className="font-serif font-bold text-[#222423]/80 text-base">
+                      Severely Depleted
                     </span>
                   </div>
-                  <p className="text-xs text-volcanic-ash/60 mt-1">
-                    Sterilized plastic grain bags grown in commercial warehouses with zero soil minerals.
+                  <p className="text-xs text-[#222423]/60 mt-1">
+                    Lacks the secondary metabolites, triterpenoids, and ganoderic acids produced only in mature caps.
                   </p>
                 </div>
               </div>
 
               {/* Row 5 */}
-              <div className="p-4 bg-white/40 rounded-none border border-red-200/50 flex items-start gap-4">
-                <div className="mt-0.5 w-6 h-6 rounded-full bg-red-100 text-red-600 flex items-center justify-center shrink-0">
-                  <X className="w-4 h-4 stroke-[2.5]" />
+              <div className="p-4 bg-white/50 rounded-xl border border-[#222423]/10 flex items-start gap-4">
+                <div className="mt-0.5 w-6 h-6 rounded-full bg-[#8C3F2B]/15 text-[#8C3F2B] flex items-center justify-center shrink-0">
+                  <Minus className="w-3.5 h-3.5 stroke-[2.5]" />
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs uppercase tracking-wider text-volcanic-ash/60">
-                      Mushroom Source
+                    <span className="font-sans text-xs uppercase tracking-wider text-[#222423]/60 font-semibold">
+                      Cultivation Medium
                     </span>
-                    <span className="font-mono font-medium text-volcanic-ash/70 text-sm">
-                      Mycelium + Grain Filler
+                    <span className="font-serif font-bold text-[#222423]/80 text-base">
+                      Sterilized Commodity Grain
                     </span>
                   </div>
-                  <p className="text-xs text-volcanic-ash/60 mt-1">
-                    Fungal roots cannot be mechanically separated from the grain cake, so the entire starch mass is milled.
+                  <p className="text-xs text-[#222423]/60 mt-1">
+                    Grown quickly in plastic bags on cereal grains (rice, oats, barley) in indoor sterile labs.
                   </p>
                 </div>
               </div>
 
               {/* Row 6 */}
-              <div className="p-4 bg-white/40 rounded-none border border-red-200/50 flex items-start gap-4">
-                <div className="mt-0.5 w-6 h-6 rounded-full bg-red-100 text-red-600 flex items-center justify-center shrink-0">
-                  <X className="w-4 h-4 stroke-[2.5]" />
+              <div className="p-4 bg-white/50 rounded-xl border border-[#222423]/10 flex items-start gap-4">
+                <div className="mt-0.5 w-6 h-6 rounded-full bg-[#8C3F2B]/15 text-[#8C3F2B] flex items-center justify-center shrink-0">
+                  <Minus className="w-3.5 h-3.5 stroke-[2.5]" />
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs uppercase tracking-wider text-volcanic-ash/60">
+                    <span className="font-sans text-xs uppercase tracking-wider text-[#222423]/60 font-semibold">
                       Third-Party Testing
                     </span>
-                    <span className="font-mono font-medium text-red-700 text-sm">
+                    <span className="font-serif font-bold text-[#8C3F2B] text-base">
                       Rarely Tested / Proprietary Blends
                     </span>
                   </div>
-                  <p className="text-xs text-volcanic-ash/60 mt-1">
-                    Labels cite "total polysaccharides" to mask high starch percentages and evade specific beta-glucan quantification.
+                  <p className="text-xs text-[#222423]/60 mt-1">
+                    Labels cite &quot;total polysaccharides&quot; to mask high starch percentages and evade specific beta-glucan quantification.
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-volcanic-ash/10 flex items-center justify-between text-xs font-mono text-red-700/80">
+            <div className="mt-6 pt-4 border-t border-[#222423]/10 flex items-center justify-between text-xs font-sans text-[#222423]/60">
               <span>Standard Grain Biomass</span>
-              <span>Predominantly Grain Starch</span>
+              <span className="text-[#8C3F2B] font-semibold">Predominantly Grain Starch</span>
             </div>
           </motion.div>
         </div>
 
-        {/* Informational Callout Banner */}
-        <div className="mt-12 p-6 bg-volcanic-deep text-kinigi-mist rounded-none border-l-4 border-spore-gold flex flex-col md:flex-row items-center gap-6">
-          <div className="w-12 h-12 rounded-full bg-spore-gold/20 text-spore-gold flex items-center justify-center shrink-0">
+        {/* Informational Callout Banner (Clean normal flow, mt-12, never overlapping) */}
+        <div className="mt-12 p-6 md:p-8 bg-[#141515] text-[#EAE8E1] rounded-2xl border border-white/10 shadow-xl flex flex-col md:flex-row items-center gap-6 max-w-5xl mx-auto">
+          <div className="w-12 h-12 rounded-full bg-[#D4AF6A]/20 text-[#D4AF6A] flex items-center justify-center shrink-0">
             <Sparkles className="w-6 h-6" />
           </div>
-          <div className="flex-1">
-            <h4 className="font-serif text-lg text-kinigi-mist font-semibold mb-1">
+          <div className="flex-1 text-center md:text-left">
+            <h4 className="font-serif text-lg text-white font-semibold mb-1">
               The Iodine Starch Test: Simple Biological Truth
             </h4>
-            <p className="font-sans text-sm text-kinigi-mist/80 leading-relaxed">
-              Drop pharmacy iodine into typical mycelium-on-grain powder and it turns ink-black — exposing massive grain starch. Drop iodine into VŪNGA pure fruiting body dual-extract and the liquid stays clean golden amber. Zero starch. 100% active functional fungus.
+            <p className="font-sans text-sm text-[#EAE8E1]/80 leading-relaxed">
+              Drop pharmacy iodine into typical mycelium-on-grain powder and it turns ink-black &mdash; exposing massive grain starch. Drop iodine into VŪNGA pure fruiting body dual-extract and the liquid stays clean golden amber. Zero starch. 100% active functional fungus.
             </p>
           </div>
           <Link
             to="/shop"
-            className="shrink-0 px-5 py-2.5 bg-oxidized-copper hover:bg-oxidized-copper/90 text-white font-mono text-xs uppercase tracking-widest font-medium transition-all"
+            className="shrink-0 px-6 py-3.5 rounded-full bg-[#B86B43] hover:bg-[#a35b36] text-[#EAE8E1] font-sans text-xs uppercase tracking-widest font-semibold transition-all duration-300 shadow-lg cursor-pointer"
           >
             Explore Apothecary
           </Link>
         </div>
-      </section>
+            </section>
 
       {/* 3. INTERACTIVE BATCH COA VERIFIER */}
       <section id="coa-lookup" className="py-24 px-6 bg-gradient-to-b from-kinigi-paper via-white to-kinigi-paper border-t border-b border-volcanic-ash/10">

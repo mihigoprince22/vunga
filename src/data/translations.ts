@@ -195,10 +195,10 @@ export const translations: Record<Language, TranslationDictionary> = {
   EN: {
     nav: {
       home: 'Home',
-      shop: 'Shop by Need',
-      science: 'Our Science & COA',
+      shop: 'Shop',
+      science: 'Science & COA',
       origin: 'Virunga Origin',
-      tastingBar: 'Kigali Tasting Bar',
+      tastingBar: 'Kigali Bar',
       wholesale: 'Chef & Wholesale',
       quiz: 'Mushroom Matcher',
       findMatch: 'FIND YOUR MATCH',
@@ -385,10 +385,10 @@ export const translations: Record<Language, TranslationDictionary> = {
   RW: {
     nav: {
       home: 'Ahabanza',
-      shop: 'Gura ku Byo Ukeneye',
-      science: 'Ubumenyi & COA',
-      origin: 'Inkomoko muri Virunga',
-      tastingBar: 'Akabari ko Gusogongera i Kigali',
+      shop: 'Isoko',
+      science: 'Ubushakashatsi',
+      origin: 'Inkomoko',
+      tastingBar: 'I Kigali',
       wholesale: 'Kurangura ku Mahoteli n\'Abatetsi',
       quiz: 'Guhitamo Igihumyo Cyawe',
       findMatch: 'SHAKA IGIKWIRIYE',
@@ -575,10 +575,10 @@ export const translations: Record<Language, TranslationDictionary> = {
   FR: {
     nav: {
       home: 'Accueil',
-      shop: 'Boutique par Besoin',
-      science: 'Notre Science & COA',
-      origin: 'Origine des Virunga',
-      tastingBar: 'Bar de Dégustation à Kigali',
+      shop: 'Boutique',
+      science: 'Science & COA',
+      origin: 'Origine',
+      tastingBar: 'Bar Kigali',
       wholesale: 'Chefs & Vente en Gros',
       quiz: 'Diagnostique Mycologique',
       findMatch: 'TROUVEZ VOTRE RITUEL',

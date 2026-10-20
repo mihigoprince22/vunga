@@ -142,9 +142,9 @@ const Origin = () => {
             transition={{ duration: 0.9 }}
             className="max-w-4xl space-y-6"
           >
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-oxidized-copper/20 border border-oxidized-copper/40 text-spore-gold text-xs font-mono tracking-widest uppercase backdrop-blur-md">
-              <MapPin className="w-3.5 h-3.5 text-spore-gold" />
-              <span>Volcanoes National Park Buffer Zone · 2,400m MSL</span>
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#141515]/80 border border-[#B86B43]/50 text-[#D4AF6A] font-sans font-semibold text-xs tracking-[0.2em] uppercase backdrop-blur-md">
+              <MapPin className="w-3.5 h-3.5 text-[#D4AF6A]" />
+              <span>Volcanoes National Park Buffer Zone &bull; 2,400m MSL</span>
             </div>
 
             <h1 className="font-serif font-light text-kinigi-mist text-4xl sm:text-6xl md:text-7xl tracking-tight leading-[1.08]">
@@ -245,17 +245,10 @@ const Origin = () => {
                 loop
                 muted
                 playsInline
-                preload="auto"
                 poster="/assets/18_keyframe-video-02-fruiting-timelapse-16x9_4K.jpg"
-                className="relative z-10 w-full h-full object-cover rounded-lg"
-              >
-                <source src="/assets/18_video-02-fruiting-timelapse-loop-16x9.mp4" type="video/mp4" />
-                <img
-                  src="/assets/18_keyframe-video-02-fruiting-timelapse-16x9_4K.jpg"
-                  alt="Lion's Mane Fruiting Time-Lapse"
-                  className="w-full h-full object-cover"
-                />
-              </video>
+                src="/assets/18_video-02-fruiting-timelapse-loop-16x9.mp4"
+                className="relative z-10 w-full h-full object-cover rounded-2xl"
+              />
 
               {/* Corner Watermarks */}
               <div className="absolute top-4 left-4 z-20 bg-volcanic-deep/85 px-3 py-1.5 border border-white/10 text-[11px] font-mono text-kinigi-mist flex items-center gap-2 backdrop-blur-md">

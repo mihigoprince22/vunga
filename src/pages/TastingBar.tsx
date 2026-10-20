@@ -285,29 +285,43 @@ const TastingBar = () => {
 
   return (
     <div className="min-h-screen bg-volcanic-deep text-kinigi-mist">
-      {/* 1. ARCHITECTURAL SHOWCASE SECTION */}
-      <section className="relative pt-28 pb-20 px-6 border-b border-white/10">
-        <div className="max-w-6xl mx-auto space-y-12">
-          {/* Header & Meta */}
-          <div className="max-w-3xl space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-oxidized-copper/15 border border-oxidized-copper/40 text-spore-gold text-xs font-mono tracking-widest uppercase">
-              <Building2 className="w-3.5 h-3.5 text-spore-gold" />
-              <span>Flagship Apothecary &amp; Tasting Bar</span>
+      {/* FULL-BLEED ATMOSPHERIC ARCHITECTURAL HERO BANNER */}
+      <section className="relative min-h-[75vh] flex flex-col justify-end overflow-hidden bg-[#141515] text-[#EAE8E1] pb-20 pt-36 border-b border-white/10">
+        {/* Full-bleed Background Interior Image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/assets/08_venue-tasting-bar-interior-16x9_4K.jpg"
+            alt="The Kigali Flagship Apothecary & Elixir Bar"
+            className="w-full h-full object-cover object-center scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#141515] via-[#141515]/70 to-[#141515]/90" />
+        </div>
+
+        {/* Content Overlay */}
+        <div className="relative z-10 max-w-6xl mx-auto px-6 w-full space-y-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl space-y-5"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#141515]/85 border border-[#B86B43]/50 text-[#D4AF6A] font-sans font-semibold text-xs tracking-[0.2em] uppercase backdrop-blur-md">
+              <MapPin className="w-3.5 h-3.5 text-[#D4AF6A]" />
+              <span>KG 674 ST, KIMIHURURA &bull; KIGALI, RWANDA</span>
             </div>
 
-            <h1 className="font-serif font-light text-kinigi-mist text-4xl sm:text-6xl md:text-7xl tracking-tight leading-[1.08]">
-              The VŪNGA Apothecary &amp; Tasting Bar
+            <h1 className="font-serif font-light text-[#EAE8E1] text-4xl sm:text-6xl md:text-7xl tracking-tight leading-[1.08]">
+              The Kigali Flagship Apothecary &amp; Elixir Bar
             </h1>
 
-            <div className="flex flex-wrap items-center gap-6 text-xs font-mono text-kinigi-mist/75 pt-2">
+            <p className="font-sans text-base sm:text-xl text-[#EAE8E1]/90 font-normal leading-relaxed max-w-3xl">
+              Constructed with carved volcanic basalt slabs from the slopes of Musanze, raw hand-beaten copper extraction apparatus, and native eucalyptus woodwork. An earthen sanctuary where science, ritual, and gastronomy unite.
+            </p>
+
+            <div className="flex flex-wrap items-center gap-6 text-xs font-sans text-[#EAE8E1]/75 pt-2 border-t border-white/10">
               <span className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-oxidized-copper" />
-                Kigali, Rwanda
-              </span>
-              <span className="w-1.5 h-1.5 rounded-full bg-white/20" />
-              <span className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-spore-gold" />
-                Open Daily 08:00 AM – 08:00 PM CAT
+                <Clock className="w-4 h-4 text-[#D4AF6A]" />
+                Open Daily 08:00 AM &ndash; 08:00 PM CAT
               </span>
               <span className="w-1.5 h-1.5 rounded-full bg-white/20" />
               <span className="text-emerald-400 flex items-center gap-1.5">
@@ -315,13 +329,13 @@ const TastingBar = () => {
                 Live Pour-Over Counter Active
               </span>
             </div>
+          </motion.div>
+        </div>
+      </section>
 
-            <p className="font-sans text-base sm:text-lg text-kinigi-mist/80 font-normal leading-relaxed pt-2">
-              Constructed with carved volcanic basalt slabs from the slopes of Musanze, raw hand-beaten copper extraction apparatus, and native eucalyptus woodwork. An earthen sanctuary where science, ritual, and gastronomy unite.
-            </p>
-          </div>
-
-          {/* Architectural Image Collage */}
+      {/* ARCHITECTURAL IMAGE COLLAGE */}
+      <section className="py-20 px-6 border-b border-white/10">
+        <div className="max-w-6xl mx-auto space-y-12">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
             {/* Large 16:9 Interior Image */}
             <motion.div

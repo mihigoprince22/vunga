@@ -25,7 +25,7 @@ export default {
         'sku': '0.14em',
       },
       animation: {
-        'marquee': 'marquee 30s linear infinite',
+        'marquee': 'marquee 35s linear infinite',
         'marquee-slow': 'marquee 45s linear infinite',
       },
       keyframes: {

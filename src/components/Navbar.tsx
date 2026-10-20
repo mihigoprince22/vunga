@@ -1,10 +1,10 @@
-import React, { useState, useRef } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
-import { ShoppingBag, Menu, X, ChevronDown, Sparkles, ArrowRight } from 'lucide-react'
-import VungaLogo from './VungaLogo'
-import { useVunga } from '../context/VungaContext'
-import type { Language } from '../context/VungaContext'
+import React, { useState, useRef, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ShoppingBag, Menu, X, ChevronDown, Sparkles, ArrowRight } from 'lucide-react';
+import VungaLogo from './VungaLogo';
+import { useVunga } from '../context/VungaContext';
+import type { Language } from '../context/VungaContext';
 
 const MEGA_MENU_COLUMNS = [
   {
@@ -42,7 +42,7 @@ const MEGA_MENU_COLUMNS = [
       { name: 'Virunga Wood Ear', desc: 'Sun-cured cloud forest fronds with distinctive snap', href: '/shop/virunga-wood-ear' },
     ],
   },
-]
+];
 
 const Navbar: React.FC = () => {
   const {
@@ -54,64 +54,81 @@ const Navbar: React.FC = () => {
     openCart,
     openQuiz,
     t,
-  } = useVunga()
+  } = useVunga();
 
   const toggleCurrency = () => {
-    setCurrency(currency === 'RWF' ? 'USD' : 'RWF')
-  }
+    setCurrency(currency === 'RWF' ? 'USD' : 'RWF');
+  };
 
-  const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const megaMenuTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const location = useLocation()
+  const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const megaMenuTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const location = useLocation();
+
+  // Auto-close mega-menu on navigation or route query change
+  useEffect(() => {
+    setIsMegaMenuOpen(false);
+    setIsMobileMenuOpen(false);
+  }, [location.pathname, location.search]);
+
+  // Auto-close mega-menu on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 40) {
+        setIsMegaMenuOpen(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleMouseEnter = () => {
     if (megaMenuTimeoutRef.current) {
-      clearTimeout(megaMenuTimeoutRef.current)
+      clearTimeout(megaMenuTimeoutRef.current);
     }
-    setIsMegaMenuOpen(true)
-  }
+    setIsMegaMenuOpen(true);
+  };
 
   const handleMouseLeave = () => {
     megaMenuTimeoutRef.current = setTimeout(() => {
-      setIsMegaMenuOpen(false)
-    }, 180)
-  }
+      setIsMegaMenuOpen(false);
+    }, 180);
+  };
 
   const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false)
-  }
+    setIsMobileMenuOpen(false);
+  };
 
   const navLinks = [
     { name: t('nav.home') || 'Home', path: '/' },
     {
-      name: t('nav.shop') || 'Shop by Need',
+      name: t('nav.shop') || 'Shop',
       path: '/shop',
       hasMegaMenu: true,
     },
-    { name: t('nav.science') || 'Our Science & COA', path: '/science' },
+    { name: t('nav.science') || 'Science & COA', path: '/science' },
     { name: t('nav.origin') || 'Virunga Origin', path: '/origin' },
-    { name: t('nav.tastingBar') || 'Kigali Tasting Bar & Wholesale', path: '/tasting-bar' },
-  ]
+    { name: t('nav.tastingBar') || 'Kigali Bar', path: '/tasting-bar' },
+  ];
 
-  const languages: Language[] = ['EN', 'RW', 'FR']
+  const languages: Language[] = ['EN', 'RW', 'FR'];
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full bg-volcanic-deep/85 backdrop-blur-xl border-b border-white/10 transition-colors">
+      <header className="sticky top-0 z-50 w-full bg-[#141515]/90 backdrop-blur-xl border-b border-white/10 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           {/* Left: VungaLogo */}
           <div className="flex items-center shrink-0">
             <VungaLogo variant="light" asLink={true} layout="horizontal" />
           </div>
 
-          {/* Center: Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-7">
+          {/* Center: Desktop Navigation Links (nowrap & Plus Jakarta Sans) */}
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
             {navLinks.map((link) => {
               const isActive =
                 link.path === '/'
                   ? location.pathname === '/'
-                  : location.pathname.startsWith(link.path)
+                  : location.pathname.startsWith(link.path);
 
               if (link.hasMegaMenu) {
                 return (
@@ -123,81 +140,81 @@ const Navbar: React.FC = () => {
                   >
                     <Link
                       to={link.path}
-                      className={`inline-flex items-center gap-1.5 font-sans font-medium uppercase text-[13px] tracking-wider transition-colors duration-200 ${
+                      className={`inline-flex items-center gap-1.5 whitespace-nowrap text-xs font-sans font-medium uppercase tracking-[0.12em] transition-colors duration-200 ${
                         isActive || isMegaMenuOpen
-                          ? 'text-oxidized-copper font-semibold'
-                          : 'text-kinigi-mist/90 hover:text-white'
+                          ? 'text-[#B86B43] font-semibold'
+                          : 'text-[#EAE8E1]/90 hover:text-white'
                       }`}
                     >
                       <span>{link.name}</span>
                       <ChevronDown
                         className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                          isMegaMenuOpen ? 'rotate-180 text-oxidized-copper' : 'text-kinigi-mist/60'
+                          isMegaMenuOpen ? 'rotate-180 text-[#B86B43]' : 'text-[#EAE8E1]/60'
                         }`}
                       />
                     </Link>
                   </div>
-                )
+                );
               }
 
               return (
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`font-sans font-medium uppercase text-[13px] tracking-wider transition-colors duration-200 relative py-2 ${
+                  className={`whitespace-nowrap text-xs font-sans font-medium uppercase tracking-[0.12em] transition-colors duration-200 relative py-2 ${
                     isActive
-                      ? 'text-oxidized-copper font-semibold'
-                      : 'text-kinigi-mist/90 hover:text-white'
+                      ? 'text-[#B86B43] font-semibold'
+                      : 'text-[#EAE8E1]/90 hover:text-white'
                   }`}
                 >
                   {link.name}
                   {isActive && (
                     <motion.div
                       layoutId="activeNavIndicator"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-oxidized-copper"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#B86B43]"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
                 </Link>
-              )
+              );
             })}
           </nav>
 
           {/* Right Controls Row */}
-          <div className="hidden sm:flex items-center gap-4">
-            {/* "Find Your Match" button */}
+          <div className="hidden sm:flex items-center gap-3.5">
+            {/* "Find Your Match" Luxury Pill Button */}
             <button
               onClick={openQuiz}
-              className="inline-flex items-center gap-2 bg-oxidized-copper hover:bg-oxidized-copper/90 text-white px-3.5 py-2 font-sans font-medium uppercase text-[12px] tracking-wider transition-all duration-200 shadow-sm active:scale-95"
+              className="inline-flex items-center gap-2 rounded-full bg-[#B86B43] hover:bg-[#a35b36] text-[#EAE8E1] px-5 py-2 font-sans font-semibold uppercase text-xs tracking-[0.14em] transition-all duration-300 shadow-md active:scale-95 cursor-pointer border-none"
             >
-              <Sparkles className="w-3.5 h-3.5 text-spore-gold shrink-0" />
-              <span>{t('nav.findMatch') || 'Find Your Match'}</span>
+              <Sparkles className="w-3.5 h-3.5 text-[#D4AF6A] shrink-0" />
+              <span>{t('nav.findMatch') || 'FIND YOUR MATCH'}</span>
             </button>
 
             {/* Language Switcher: EN | RW | FR */}
-            <div className="flex items-center border border-white/15 px-1 py-0.5 rounded-none bg-volcanic-ash/40">
+            <div className="flex items-center border border-white/15 px-1 py-0.5 rounded-full bg-[#222423]/60">
               {languages.map((lang, index) => {
-                const isSelected = language === lang
+                const isSelected = language === lang;
                 return (
                   <React.Fragment key={lang}>
                     <button
                       onClick={() => setLanguage(lang)}
-                      className={`relative px-2 py-1 font-mono text-[11px] font-semibold tracking-wider transition-colors duration-150 ${
+                      className={`relative px-2.5 py-1 font-sans text-[11px] font-semibold tracking-wider transition-colors duration-150 cursor-pointer ${
                         isSelected
-                          ? 'text-spore-gold'
-                          : 'text-kinigi-mist/60 hover:text-kinigi-mist'
+                          ? 'text-[#D4AF6A]'
+                          : 'text-[#EAE8E1]/60 hover:text-[#EAE8E1]'
                       }`}
                     >
                       {lang}
                       {isSelected && (
-                        <span className="absolute bottom-0.5 left-2 right-2 h-0.5 bg-oxidized-copper" />
+                        <span className="absolute bottom-0.5 left-2.5 right-2.5 h-0.5 bg-[#B86B43] rounded-full" />
                       )}
                     </button>
                     {index < languages.length - 1 && (
                       <span className="text-white/20 text-[10px] select-none">|</span>
                     )}
                   </React.Fragment>
-                )
+                );
               })}
             </div>
 
@@ -205,13 +222,13 @@ const Navbar: React.FC = () => {
             <button
               onClick={toggleCurrency}
               aria-label="Toggle currency"
-              className="flex items-center gap-1.5 px-2.5 py-1.5 border border-white/15 bg-volcanic-ash/40 text-kinigi-mist hover:text-white font-mono text-[11px] font-semibold tracking-wider transition-all duration-200 hover:border-oxidized-copper/50"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/15 bg-[#222423]/60 text-[#EAE8E1] hover:text-white font-sans text-[11px] font-semibold tracking-wider transition-all duration-200 hover:border-[#B86B43]/50 cursor-pointer"
             >
-              <span className={currency === 'RWF' ? 'text-spore-gold font-bold' : 'text-kinigi-mist/50'}>
+              <span className={currency === 'RWF' ? 'text-[#D4AF6A] font-bold' : 'text-[#EAE8E1]/50'}>
                 RWF
               </span>
               <span className="text-white/20 select-none">/</span>
-              <span className={currency === 'USD' ? 'text-spore-gold font-bold' : 'text-kinigi-mist/50'}>
+              <span className={currency === 'USD' ? 'text-[#D4AF6A] font-bold' : 'text-[#EAE8E1]/50'}>
                 USD
               </span>
             </button>
@@ -220,11 +237,11 @@ const Navbar: React.FC = () => {
             <button
               onClick={openCart}
               aria-label={`Open shopping cart with ${cartCount} items`}
-              className="relative p-2 text-kinigi-mist hover:text-oxidized-copper transition-colors duration-200 active:scale-95 group focus:outline-none"
+              className="relative p-2 text-[#EAE8E1] hover:text-[#B86B43] transition-colors duration-200 active:scale-95 group focus:outline-none cursor-pointer"
             >
               <ShoppingBag className="w-5 h-5 transition-transform group-hover:scale-105" />
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 bg-oxidized-copper text-white text-[10px] font-mono font-bold rounded-full flex items-center justify-center border-2 border-volcanic-deep shadow-sm">
+                <span className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 bg-[#B86B43] text-white text-[10px] font-sans font-bold rounded-full flex items-center justify-center border-2 border-[#141515] shadow-sm">
                   {cartCount}
                 </span>
               )}
@@ -236,11 +253,11 @@ const Navbar: React.FC = () => {
             <button
               onClick={openCart}
               aria-label="Open cart"
-              className="relative p-2 text-kinigi-mist"
+              className="relative p-2 text-[#EAE8E1]"
             >
               <ShoppingBag className="w-5 h-5" />
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 bg-oxidized-copper text-white text-[10px] font-mono font-bold rounded-full flex items-center justify-center border-2 border-volcanic-deep">
+                <span className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 bg-[#B86B43] text-white text-[10px] font-sans font-bold rounded-full flex items-center justify-center border-2 border-[#141515]">
                   {cartCount}
                 </span>
               )}
@@ -249,7 +266,7 @@ const Navbar: React.FC = () => {
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Open navigation menu"
-              className="p-2 text-kinigi-mist hover:text-white focus:outline-none"
+              className="p-2 text-[#EAE8E1] hover:text-white focus:outline-none cursor-pointer"
             >
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -266,7 +283,7 @@ const Navbar: React.FC = () => {
               transition={{ duration: 0.22, ease: 'easeOut' }}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
-              className="hidden lg:block absolute top-20 left-0 w-full bg-volcanic-deep/98 backdrop-blur-2xl border-b border-oxidized-copper/30 shadow-2xl overflow-hidden z-40"
+              className="hidden lg:block absolute top-20 left-0 w-full bg-[#141515]/98 backdrop-blur-2xl border-b border-[#B86B43]/30 shadow-2xl overflow-hidden z-40"
             >
               <div className="max-w-7xl mx-auto px-8 py-10">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -277,10 +294,10 @@ const Navbar: React.FC = () => {
                         colIdx < 2 ? 'md:border-r md:border-white/10 md:pr-8' : ''
                       }`}
                     >
-                      <h3 className="font-serif text-sm font-bold text-spore-gold tracking-wider uppercase mb-1 flex items-center gap-2">
+                      <h3 className="font-serif text-sm font-bold text-[#D4AF6A] tracking-wider uppercase mb-1 flex items-center gap-2">
                         <span>{column.title}</span>
                       </h3>
-                      <p className="font-sans text-[11px] text-kinigi-mist/60 mb-5 leading-snug">
+                      <p className="font-sans text-[11px] text-[#EAE8E1]/60 mb-5 leading-snug">
                         {column.description}
                       </p>
 
@@ -292,10 +309,10 @@ const Navbar: React.FC = () => {
                               onClick={() => setIsMegaMenuOpen(false)}
                               className="group block transition-transform duration-150 hover:translate-x-1"
                             >
-                              <div className="font-sans font-medium text-[13px] text-kinigi-mist group-hover:text-oxidized-copper transition-colors">
+                              <div className="font-sans font-medium text-[13px] text-[#EAE8E1] group-hover:text-[#B86B43] transition-colors">
                                 {item.name}
                               </div>
-                              <div className="font-mono text-[11px] text-kinigi-mist/50 group-hover:text-kinigi-mist/80 transition-colors">
+                              <div className="font-sans text-[11px] text-[#EAE8E1]/50 group-hover:text-[#EAE8E1]/80 transition-colors">
                                 {item.desc}
                               </div>
                             </Link>
@@ -308,7 +325,7 @@ const Navbar: React.FC = () => {
                           <Link
                             to="/shop"
                             onClick={() => setIsMegaMenuOpen(false)}
-                            className="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-oxidized-copper hover:text-spore-gold transition-colors"
+                            className="inline-flex items-center gap-2 text-xs font-sans font-semibold uppercase tracking-wider text-[#B86B43] hover:text-[#D4AF6A] transition-colors"
                           >
                             <span>View All 11 Harvests</span>
                             <ArrowRight className="w-3.5 h-3.5" />
@@ -320,10 +337,10 @@ const Navbar: React.FC = () => {
                 </div>
 
                 {/* Bottom banner strip inside mega-menu */}
-                <div className="mt-8 pt-4 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-kinigi-mist/60">
+                <div className="mt-8 pt-4 border-t border-white/10 flex items-center justify-between text-[11px] font-sans text-[#EAE8E1]/60">
                   <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-verdigris-bamboo inline-block animate-pulse" />
-                    <span>Current Kinigi Harvest Cycle: Fresh Oyster & Reishi In Stock</span>
+                    <span className="w-2 h-2 rounded-full bg-[#527361] inline-block animate-pulse" />
+                    <span>Current Kinigi Harvest Cycle: Fresh Oyster &amp; Reishi In Stock</span>
                   </div>
                   <div className="text-right">
                     Same-Day Delivery in Kigali for Orders Placed Before 2:00 PM
@@ -343,7 +360,7 @@ const Navbar: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ type: 'spring', damping: 28, stiffness: 300 }}
-            className="fixed inset-0 z-50 lg:hidden bg-volcanic-deep/98 backdrop-blur-2xl flex flex-col justify-between overflow-y-auto"
+            className="fixed inset-0 z-50 lg:hidden bg-[#141515]/98 backdrop-blur-2xl flex flex-col justify-between overflow-y-auto"
           >
             {/* Mobile Header Bar */}
             <div className="flex items-center justify-between px-6 h-20 border-b border-white/10">
@@ -351,7 +368,7 @@ const Navbar: React.FC = () => {
               <button
                 onClick={closeMobileMenu}
                 aria-label="Close navigation"
-                className="p-2 text-kinigi-mist hover:text-white focus:outline-none"
+                className="p-2 text-[#EAE8E1] hover:text-white focus:outline-none cursor-pointer"
               >
                 <X className="w-6 h-6" />
               </button>
@@ -364,89 +381,75 @@ const Navbar: React.FC = () => {
                   key={link.path}
                   to={link.path}
                   onClick={closeMobileMenu}
-                  className="font-serif text-2xl font-bold text-kinigi-mist hover:text-oxidized-copper transition-colors py-1 flex items-center justify-between border-b border-white/5"
+                  className="font-serif text-2xl font-bold text-[#EAE8E1] hover:text-[#B86B43] transition-colors py-1 flex items-center justify-between border-b border-white/5"
                 >
                   <span>{link.name}</span>
-                  <ArrowRight className="w-5 h-5 text-oxidized-copper" />
+                  <ArrowRight className="w-5 h-5 text-[#B86B43]" />
                 </Link>
               ))}
 
               <div className="pt-4">
                 <button
                   onClick={() => {
-                    closeMobileMenu()
-                    openQuiz()
+                    closeMobileMenu();
+                    openQuiz();
                   }}
-                  className="w-full py-4 bg-oxidized-copper hover:bg-oxidized-copper/90 text-white font-sans text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2"
+                  className="w-full py-4 rounded-full bg-[#B86B43] hover:bg-[#a35b36] text-white font-sans text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2 cursor-pointer shadow-lg"
                 >
-                  <Sparkles className="w-4 h-4 text-spore-gold" />
-                  <span>{t('nav.findMatch') || 'Find Your Match'} (Quiz)</span>
+                  <Sparkles className="w-4 h-4 text-[#D4AF6A]" />
+                  <span>{t('nav.findMatch') || 'FIND YOUR MATCH'}</span>
                 </button>
               </div>
             </div>
 
             {/* Mobile Footer Area: Currency & Language Switchers */}
-            <div className="px-6 py-8 border-t border-white/10 bg-volcanic-ash/40 space-y-5">
+            <div className="px-6 py-8 border-t border-white/10 bg-[#222423]/40 space-y-5">
               <div className="flex items-center justify-between">
-                <span className="font-mono text-xs uppercase tracking-wider text-kinigi-mist/70">
-                  Language
+                <span className="font-sans text-xs uppercase tracking-wider text-[#EAE8E1]/70">
+                  {t('nav.language') || 'Language'}
                 </span>
-                <div className="flex items-center gap-2">
-                  {languages.map((lang) => (
-                    <button
-                      key={lang}
-                      onClick={() => setLanguage(lang)}
-                      className={`px-3 py-1 font-mono text-xs font-semibold uppercase ${
-                        language === lang
-                          ? 'bg-oxidized-copper text-white'
-                          : 'bg-white/5 text-kinigi-mist/70'
-                      }`}
-                    >
-                      {lang}
-                    </button>
+                <div className="flex items-center border border-white/15 px-1 py-0.5 rounded-full bg-[#141515]">
+                  {languages.map((lang, index) => (
+                    <React.Fragment key={lang}>
+                      <button
+                        onClick={() => setLanguage(lang)}
+                        className={`px-3 py-1 font-sans text-xs font-semibold ${
+                          language === lang ? 'text-[#D4AF6A]' : 'text-[#EAE8E1]/60'
+                        }`}
+                      >
+                        {lang}
+                      </button>
+                      {index < languages.length - 1 && (
+                        <span className="text-white/20 text-xs">|</span>
+                      )}
+                    </React.Fragment>
                   ))}
                 </div>
               </div>
 
               <div className="flex items-center justify-between">
-                <span className="font-mono text-xs uppercase tracking-wider text-kinigi-mist/70">
-                  Currency
+                <span className="font-sans text-xs uppercase tracking-wider text-[#EAE8E1]/70">
+                  {t('nav.currency') || 'Currency'}
                 </span>
-                <div className="flex items-center gap-2 font-mono text-xs">
-                  <button
-                    onClick={() => currency !== 'RWF' && toggleCurrency()}
-                    className={`px-3 py-1 font-semibold uppercase ${
-                      currency === 'RWF'
-                        ? 'bg-oxidized-copper text-white'
-                        : 'bg-white/5 text-kinigi-mist/70'
-                    }`}
-                  >
+                <button
+                  onClick={toggleCurrency}
+                  className="flex items-center gap-2 px-4 py-1.5 border border-white/15 rounded-full bg-[#141515] font-sans text-xs font-semibold"
+                >
+                  <span className={currency === 'RWF' ? 'text-[#D4AF6A]' : 'text-[#EAE8E1]/50'}>
                     RWF
-                  </button>
-                  <button
-                    onClick={() => currency !== 'USD' && toggleCurrency()}
-                    className={`px-3 py-1 font-semibold uppercase ${
-                      currency === 'USD'
-                        ? 'bg-oxidized-copper text-white'
-                        : 'bg-white/5 text-kinigi-mist/70'
-                    }`}
-                  >
+                  </span>
+                  <span className="text-white/20">/</span>
+                  <span className={currency === 'USD' ? 'text-[#D4AF6A]' : 'text-[#EAE8E1]/50'}>
                     USD
-                  </button>
-                </div>
-              </div>
-
-              <div className="pt-2 text-center">
-                <p className="font-mono text-[10px] uppercase tracking-widest text-kinigi-mist/50">
-                  Cultivated in Kinigi, Musanze — Rwanda
-                </p>
+                  </span>
+                </button>
               </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
     </>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
