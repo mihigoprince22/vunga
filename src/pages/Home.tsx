@@ -113,9 +113,9 @@ const ROUTINE_MOMENTS = [
     title: 'Fresh Highland Kitchen',
     desc: 'Sear thick King Trumpets or Golden Oyster bouquets in browned butter, mountain thyme, and volcanic sea salt for an unforgettable meal.',
     icon: ChefHat,
-    cutout: '/assets/13_harvest-culinary-crate-3x2_4K.jpg',
-    cutoutAlt: "Chef's Fresh Kinigi Harvest Crate",
-    isImage: true,
+    cutout: '/assets/14_cutout-01-lions-mane.png',
+    cutoutAlt: 'Kinigi Culinary Mushroom Harvest',
+    isImage: false,
   },
 ];
 
@@ -258,7 +258,10 @@ const Home: React.FC = () => {
       {/* ========================================================================= */}
       {/* SECTION 1: Full-Viewport Video Hero (Deep Volcanic Ash #181A19 bg)         */}
       {/* ========================================================================= */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-[#181A19] text-[#EAE8E1]">
+      <section
+        className="relative min-h-[90vh] flex items-center overflow-hidden bg-[#181A19] text-[#EAE8E1]"
+        style={{ backgroundImage: 'url(/assets/03_home-hero-idle-16x9_4K.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}
+      >
         {/* Background Video Container with Immediate Image Fallback Underneath */}
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           <img
@@ -302,7 +305,7 @@ const Home: React.FC = () => {
             </h1>
 
             {/* Subheadline Lead Copy */}
-            <p className="text-base sm:text-lg font-sans font-normal leading-relaxed text-[#EAE8E1]/85 max-w-xl mb-8">
+            <p className="text-[#EAE8E1]/90 font-sans text-base sm:text-lg leading-relaxed drop-shadow-sm max-w-xl mb-8">
               Rwanda&apos;s premier functional mushroom house. Cultivated at 2,400m altitude in mineral-rich volcanic soil on the foothills of Volcanoes National Park. 100% organic fruiting bodies. Zero grain starch fillers.
             </p>
 
@@ -338,7 +341,7 @@ const Home: React.FC = () => {
               const Icon = badge.icon;
               return (
                 <React.Fragment key={badge.label}>
-                  <div className="flex items-center gap-2 flex-shrink-0 text-[#EAE8E1]/85">
+                  <div className="flex items-center gap-2 flex-shrink-0 text-[#EAE8E1] bg-[#141515]/75 backdrop-blur-md border border-[#EAE8E1]/15 px-4 py-2 rounded-full text-xs font-sans font-medium tracking-wider">
                     <Icon className="w-4 h-4 text-[#B86B43]" />
                     <span className="font-sans text-[11px] uppercase tracking-[0.12em] font-medium whitespace-nowrap">
                       {badge.label}
@@ -405,11 +408,12 @@ const Home: React.FC = () => {
                   const formatLabel =
                     product.formats?.[0] || product.weight?.split(' ')[0] || (product.isFresh ? '500g Fresh' : '60g Extract');
                   const badgeText =
-                    product.id === 1 || product.id === 4
+                    product.badge ||
+                    (product.id === 1 || product.id === 4
                       ? 'BESTSELLER'
                       : product.isFresh
                       ? "CHEF'S RESERVE"
-                      : '100% FRUITING BODY';
+                      : '100% FRUITING BODY');
 
                   return (
                     <Link
@@ -432,42 +436,42 @@ const Home: React.FC = () => {
                           />
                         )}
 
-                        {/* Top-Left Pill Badge: BESTSELLER / CHEF'S RESERVE / 100% FRUITING BODY */}
-                        <span className="absolute top-3 left-3 z-10 rounded-full bg-[#141515]/90 backdrop-blur-md text-[#EAE8E1] px-3 py-1 text-[10px] font-sans font-semibold uppercase tracking-[0.12em] border border-[#B86B43]/40 shadow-sm">
+                        {/* Top-Left Pill Badge: ONLY ONE CONCISE BADGE */}
+                        <span className="absolute top-3 left-3 max-w-[calc(100%-1.5rem)] z-10 rounded-full bg-[#141515]/85 backdrop-blur-md text-[#EAE8E1] px-3 py-1 text-[10px] font-sans font-semibold uppercase tracking-[0.1em] border border-[#B86B43]/40 shadow-sm truncate">
                           {badgeText}
-                        </span>
-
-                        {/* Top-Right Format Pill */}
-                        <span className="absolute top-3 right-3 z-10 rounded-full bg-white/95 backdrop-blur-md text-[#222423] px-2.5 py-1 text-[10px] font-sans font-semibold uppercase tracking-[0.08em] shadow-sm border border-[#222423]/10">
-                          {formatLabel}
                         </span>
                       </div>
 
                       {/* Card Body */}
                       <div className="flex flex-col flex-1 justify-between px-1">
                         <div>
-                          {/* Social Proof: 5 filled gold stars + review count */}
-                          <div className="flex items-center gap-1.5 text-xs text-[#D4AF6A] mb-1">
-                            <span>★★★★★</span>
-                            <span className="text-[11px] font-sans font-medium text-[#222423]/70">
-                              4.9 (142)
+                          {/* Social Proof & Format Label Row (Format moved cleanly out of top-right image) */}
+                          <div className="flex items-center justify-between text-xs mb-1">
+                            <div className="flex items-center gap-1.5 text-[#D4AF6A]">
+                              <span>★★★★★</span>
+                              <span className="text-[11px] font-sans font-medium text-[#222423]/70">
+                                {product.rating.toFixed(1)} ({product.reviewCount})
+                              </span>
+                            </div>
+                            <span className="text-xs font-sans font-medium text-[#222423]/65">
+                              {formatLabel}
                             </span>
                           </div>
 
-                          {/* Botanical Latin & Spec Subtitle */}
-                          <p className="text-[11px] font-sans font-semibold uppercase tracking-[0.1em] text-[#527361] mb-1 line-clamp-1">
+                          {/* Botanical Latin & Spec Subtitle - Natural wrapping without mid-word truncation */}
+                          <p className="text-[11px] font-sans font-semibold uppercase tracking-[0.08em] text-[#527361] leading-snug mt-1">
                             {product.speciesLatin || product.species}
                             {product.betaGlucans ? ` · ${product.betaGlucans}` : ''}
                           </p>
 
                           {/* Product Title */}
-                          <h3 className="font-serif text-lg font-bold text-[#222423] leading-snug line-clamp-2 min-h-[3rem] group-hover:text-[#B86B43] transition-colors mt-1">
+                          <h3 className="font-serif text-lg font-bold text-[#222423] leading-snug min-h-[3rem] group-hover:text-[#B86B43] transition-colors mt-1">
                             {product.name}
                           </h3>
 
-                          {/* Short 1-Line Benefit Description */}
-                          <p className="text-xs font-sans text-[#222423]/75 mt-1 mb-4 line-clamp-2">
-                            {product.description}
+                          {/* Short 1-Line Benefit Description (Complete Sentence, No Truncation) */}
+                          <p className="text-xs font-sans text-[#222423]/75 mt-1 mb-4 leading-relaxed">
+                            {product.shortDescription || product.description}
                           </p>
                         </div>
 
@@ -553,12 +557,12 @@ const Home: React.FC = () => {
                       key={moment.id}
                       className="rounded-2xl bg-[#1A1C1B] border border-[#EAE8E1]/10 p-6 hover:border-[#B86B43]/50 transition-all duration-300 flex flex-col justify-between relative overflow-hidden group shadow-lg min-h-[210px]"
                     >
-                      {/* Corner Thumbnail Asset (Neatly contained, no clipping across section!) */}
+                      {/* Corner Thumbnail Asset (Neatly contained, unified transparent cutout visual language) */}
                       <div className="absolute top-4 right-4 w-16 h-16 pointer-events-none opacity-85 group-hover:scale-105 transition-transform duration-300 flex items-center justify-center">
                         <img
                           src={moment.cutout}
                           alt={moment.cutoutAlt}
-                          className={`w-full h-full ${moment.isImage ? 'object-cover rounded-xl border border-white/10' : 'object-contain drop-shadow-md'}`}
+                          className="w-full h-full object-contain drop-shadow-md"
                         />
                       </div>
 
@@ -698,7 +702,7 @@ const Home: React.FC = () => {
             </div>
           </div>
 
-          <div className="text-center mt-10">
+          <div className="mt-10 pt-4 flex justify-center">
             <Link
               to="/science"
               className="inline-flex items-center gap-2 text-xs font-sans font-semibold uppercase tracking-wider text-[#B86B43] hover:text-[#a35b36] transition-colors"
@@ -713,7 +717,7 @@ const Home: React.FC = () => {
       {/* ========================================================================= */}
       {/* TESTIMONIALS STRIP: "Trusted Across Kigali & Beyond"                      */}
       {/* ========================================================================= */}
-      <section className="bg-[#FAF8F3] py-20 lg:py-24 border-b border-[#222423]/10 text-[#222423]">
+      <section className="bg-[#FAF8F3] py-24 lg:py-32 relative z-10 clear-both border-b border-[#222423]/10 text-[#222423]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <span className="text-xs font-sans font-semibold uppercase tracking-[0.2em] text-[#B86B43] block mb-2">
@@ -768,7 +772,7 @@ const Home: React.FC = () => {
       {/* ========================================================================= */}
       {/* SECTION 5: "Build Your Virunga Ritual" — 2-Column Split Bundle Builder     */}
       {/* ========================================================================= */}
-      <section className="bg-[#EAE8E1] py-24 text-[#222423]">
+      <section className="bg-[#EAE8E1] py-24 lg:py-32 relative z-10 clear-both text-[#222423]">
         <div className="max-w-7xl mx-auto px-6">
           {/* Section Header */}
           <div className="text-center max-w-2xl mx-auto mb-14">

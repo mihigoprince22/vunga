@@ -337,11 +337,12 @@ const Shop: React.FC = () => {
                 const formatLabel =
                   product.formats?.[0] || product.weight?.split(' ')[0] || (product.isFresh ? '500g Fresh' : '60g Extract');
                 const badgeText =
-                  product.id === 1 || product.id === 4
+                  product.badge ||
+                  (product.id === 1 || product.id === 4
                     ? 'BESTSELLER'
                     : product.isFresh
                     ? "CHEF'S RESERVE"
-                    : '100% FRUITING BODY';
+                    : '100% FRUITING BODY');
 
                 return (
                   <motion.div
@@ -373,42 +374,42 @@ const Shop: React.FC = () => {
                           />
                         )}
 
-                        {/* Top-Left Pill Badge */}
-                        <span className="absolute top-3 left-3 z-10 rounded-full bg-[#141515]/90 backdrop-blur-md text-[#EAE8E1] px-3 py-1 text-[10px] font-sans font-semibold uppercase tracking-[0.12em] border border-[#B86B43]/40 shadow-sm">
+                        {/* Top-Left Pill Badge: ONLY ONE CONCISE BADGE */}
+                        <span className="absolute top-3 left-3 max-w-[calc(100%-1.5rem)] z-10 rounded-full bg-[#141515]/85 backdrop-blur-md text-[#EAE8E1] px-3 py-1 text-[10px] font-sans font-semibold uppercase tracking-[0.1em] border border-[#B86B43]/40 shadow-sm truncate">
                           {badgeText}
-                        </span>
-
-                        {/* Top-Right Format Pill */}
-                        <span className="absolute top-3 right-3 z-10 rounded-full bg-white/95 backdrop-blur-md text-[#222423] px-2.5 py-1 text-[10px] font-sans font-semibold uppercase tracking-[0.08em] shadow-sm border border-[#222423]/10">
-                          {formatLabel}
                         </span>
                       </div>
 
                       {/* Product Card Details */}
                       <div className="flex flex-col flex-1 justify-between px-1">
                         <div>
-                          {/* Social Proof: 5 filled gold stars + review count */}
-                          <div className="flex items-center gap-1.5 text-xs text-[#D4AF6A] mb-1">
-                            <span>★★★★★</span>
-                            <span className="text-[11px] font-sans font-medium text-[#222423]/70">
-                              4.9 (142)
+                          {/* Social Proof & Format Label Row (Format moved cleanly out of top-right image) */}
+                          <div className="flex items-center justify-between text-xs mb-1">
+                            <div className="flex items-center gap-1.5 text-[#D4AF6A]">
+                              <span>★★★★★</span>
+                              <span className="text-[11px] font-sans font-medium text-[#222423]/70">
+                                {product.rating.toFixed(1)} ({product.reviewCount})
+                              </span>
+                            </div>
+                            <span className="text-xs font-sans font-medium text-[#222423]/65">
+                              {formatLabel}
                             </span>
                           </div>
 
-                          {/* Botanical Latin & Spec Subtitle */}
-                          <p className="text-[11px] font-sans font-semibold uppercase tracking-[0.1em] text-[#527361] mb-1 line-clamp-1">
+                          {/* Botanical Latin & Spec Subtitle - Natural wrapping without mid-word truncation */}
+                          <p className="text-[11px] font-sans font-semibold uppercase tracking-[0.08em] text-[#527361] leading-snug mt-1">
                             {product.speciesLatin || product.species}
                             {product.betaGlucans ? ` · ${product.betaGlucans}` : ''}
                           </p>
 
                           {/* Product Name */}
-                          <h3 className="font-serif text-lg font-bold text-[#222423] leading-snug line-clamp-2 min-h-[3rem] group-hover:text-[#B86B43] transition-colors mt-1">
+                          <h3 className="font-serif text-lg font-bold text-[#222423] leading-snug min-h-[3rem] group-hover:text-[#B86B43] transition-colors mt-1">
                             {displayName}
                           </h3>
 
-                          {/* Short Description */}
-                          <p className="text-xs font-sans text-[#222423]/75 mt-1 mb-4 line-clamp-2">
-                            {product.description}
+                          {/* Short Description (Complete Sentence, No Truncation) */}
+                          <p className="text-xs font-sans text-[#222423]/75 mt-1 mb-4 leading-relaxed">
+                            {product.shortDescription || product.description}
                           </p>
                         </div>
                       </div>

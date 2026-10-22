@@ -85,45 +85,45 @@ const CartDrawer: React.FC = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
             onClick={closeCart}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+            className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity"
             aria-hidden="true"
           />
 
-          {/* Slide-out Drawer Container */}
-          <div className="fixed inset-y-0 right-0 max-w-full flex">
-            <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 30, stiffness: 320 }}
-              className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-md bg-[#181A19] text-[#EAE8E1] flex flex-col h-[100dvh] shadow-2xl border-l border-white/10"
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="cart-drawer-heading"
-            >
-              {/* Header */}
-              <div className="p-5 border-b border-[#EAE8E1]/10 flex items-center justify-between bg-[#141515] shrink-0">
-                <div className="flex items-center gap-2.5">
-                  <ShoppingBag className="w-5 h-5 text-[#B86B43]" />
-                  <h2
-                    id="cart-drawer-heading"
-                    className="font-serif text-lg font-bold tracking-wide text-[#EAE8E1]"
-                  >
-                    Apothecary Satchel
-                  </h2>
-                  <span className="font-sans font-semibold text-xs text-[#D4AF6A] bg-[#D4AF6A]/15 px-2.5 py-0.5 rounded-full border border-[#D4AF6A]/30">
-                    {cartCount} {cartCount === 1 ? 'item' : 'items'}
-                  </span>
-                </div>
-
-                <button
-                  onClick={closeCart}
-                  aria-label="Close cart"
-                  className="p-1.5 text-[#EAE8E1]/70 hover:text-white transition-colors focus:outline-none cursor-pointer"
+          {/* Slide-out Drawer Panel */}
+          <motion.div
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ type: 'spring', damping: 30, stiffness: 320 }}
+            className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-[420px] h-[100dvh] bg-[#181A19] text-[#EAE8E1] border-l border-[#EAE8E1]/15 shadow-2xl flex flex-col box-border overflow-hidden"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="cart-drawer-heading"
+            style={{ right: 0 }}
+          >
+            {/* Header */}
+            <div className="px-6 py-5 border-b border-[#EAE8E1]/10 flex items-center justify-between bg-[#141515] shrink-0">
+              <div className="flex items-center gap-2.5">
+                <ShoppingBag className="w-5 h-5 text-[#B86B43]" />
+                <h2
+                  id="cart-drawer-heading"
+                  className="font-serif text-lg font-bold tracking-wide text-[#EAE8E1]"
                 >
-                  <X className="w-5 h-5" />
-                </button>
+                  Apothecary Satchel
+                </h2>
+                <span className="font-sans font-semibold text-xs text-[#D4AF6A] bg-[#D4AF6A]/15 px-2.5 py-0.5 rounded-full border border-[#D4AF6A]/30">
+                  {cartCount} {cartCount === 1 ? 'item' : 'items'}
+                </span>
               </div>
+
+              <button
+                onClick={closeCart}
+                aria-label="Close cart"
+                className="p-1.5 text-[#EAE8E1]/70 hover:text-white transition-colors focus:outline-none cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
 
               {/* Free Gift Progress Bar Section */}
               <div className="px-6 py-4 bg-volcanic-ash/40 border-b border-white/10 shrink-0">
@@ -397,7 +397,7 @@ const CartDrawer: React.FC = () => {
 
               {/* Cart Summary & Checkout Footer */}
               {cart.length > 0 && (
-                <div className="shrink-0 p-5 border-t border-[#EAE8E1]/10 bg-[#141515] space-y-4">
+                <div className="shrink-0 px-6 py-5 border-t border-[#EAE8E1]/10 bg-[#141515] space-y-4">
                   {/* Totals */}
                   <div className="space-y-1.5 text-xs font-sans">
                     <div className="flex justify-between text-[#EAE8E1]/70">
@@ -495,7 +495,6 @@ const CartDrawer: React.FC = () => {
                 </div>
               )}
             </motion.div>
-          </div>
         </div>
       )}
     </AnimatePresence>

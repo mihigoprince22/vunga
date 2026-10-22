@@ -192,17 +192,17 @@ const Navbar: React.FC = () => {
             </button>
 
             {/* Language Switcher: Segmented Pill */}
-            <div className="flex items-center rounded-full bg-[#222423] p-1 border border-[#EAE8E1]/15">
+            <div className="inline-flex items-center gap-1 rounded-full bg-[#1F2221] p-1 border border-[#EAE8E1]/15">
               {languages.map((lang) => {
                 const isSelected = language === lang;
                 return (
                   <button
                     key={lang}
                     onClick={() => setLanguage(lang)}
-                    className={`rounded-full px-2.5 py-0.5 text-[11px] font-sans font-semibold transition-all duration-200 cursor-pointer ${
+                    className={`px-2.5 py-1 rounded-full text-[11px] font-sans font-semibold tracking-wider transition-colors cursor-pointer ${
                       isSelected
-                        ? 'bg-[#B86B43] text-[#EAE8E1] shadow-xs'
-                        : 'text-[#EAE8E1]/60 hover:text-white'
+                        ? 'bg-[#B86B43] text-[#EAE8E1]'
+                        : 'text-[#EAE8E1]/70 hover:text-[#EAE8E1]'
                     }`}
                   >
                     {lang}
@@ -212,17 +212,17 @@ const Navbar: React.FC = () => {
             </div>
 
             {/* Currency Switcher: Segmented Pill */}
-            <div className="flex items-center rounded-full bg-[#222423] p-1 border border-[#EAE8E1]/15">
+            <div className="inline-flex items-center gap-1 rounded-full bg-[#1F2221] p-1 border border-[#EAE8E1]/15">
               {(['RWF', 'USD'] as const).map((curr) => {
                 const isSelected = currency === curr;
                 return (
                   <button
                     key={curr}
                     onClick={() => setCurrency(curr)}
-                    className={`rounded-full px-2.5 py-0.5 text-[11px] font-sans font-semibold transition-all duration-200 cursor-pointer ${
+                    className={`px-2.5 py-1 rounded-full text-[11px] font-sans font-semibold tracking-wider transition-colors cursor-pointer ${
                       isSelected
-                        ? 'bg-[#B86B43] text-[#EAE8E1] shadow-xs'
-                        : 'text-[#EAE8E1]/60 hover:text-white'
+                        ? 'bg-[#B86B43] text-[#EAE8E1]'
+                        : 'text-[#EAE8E1]/70 hover:text-[#EAE8E1]'
                     }`}
                   >
                     {curr}
@@ -406,17 +406,17 @@ const Navbar: React.FC = () => {
                 <span className="font-sans text-xs uppercase tracking-wider text-[#EAE8E1]/70 font-medium">
                   {t('nav.language') || 'Language'}
                 </span>
-                <div className="flex items-center rounded-full bg-[#141515] p-1 border border-[#EAE8E1]/15">
+                <div className="inline-flex items-center gap-1 rounded-full bg-[#1F2221] p-1 border border-[#EAE8E1]/15">
                   {languages.map((lang) => {
                     const isSelected = language === lang;
                     return (
                       <button
                         key={lang}
                         onClick={() => setLanguage(lang)}
-                        className={`rounded-full px-3 py-1 font-sans text-xs font-semibold transition-all duration-200 cursor-pointer ${
+                        className={`rounded-full px-2.5 py-1 font-sans text-[11px] font-semibold tracking-wider transition-colors cursor-pointer ${
                           isSelected
                             ? 'bg-[#B86B43] text-[#EAE8E1]'
-                            : 'text-[#EAE8E1]/60 hover:text-white'
+                            : 'text-[#EAE8E1]/70 hover:text-white'
                         }`}
                       >
                         {lang}
@@ -430,17 +430,17 @@ const Navbar: React.FC = () => {
                 <span className="font-sans text-xs uppercase tracking-wider text-[#EAE8E1]/70 font-medium">
                   {t('nav.currency') || 'Currency'}
                 </span>
-                <div className="flex items-center rounded-full bg-[#141515] p-1 border border-[#EAE8E1]/15">
+                <div className="inline-flex items-center gap-1 rounded-full bg-[#1F2221] p-1 border border-[#EAE8E1]/15">
                   {(['RWF', 'USD'] as const).map((curr) => {
                     const isSelected = currency === curr;
                     return (
                       <button
                         key={curr}
                         onClick={() => setCurrency(curr)}
-                        className={`rounded-full px-3 py-1 font-sans text-xs font-semibold transition-all duration-200 cursor-pointer ${
+                        className={`rounded-full px-2.5 py-1 font-sans text-[11px] font-semibold tracking-wider transition-colors cursor-pointer ${
                           isSelected
                             ? 'bg-[#B86B43] text-[#EAE8E1]'
-                            : 'text-[#EAE8E1]/60 hover:text-white'
+                            : 'text-[#EAE8E1]/70 hover:text-white'
                         }`}
                       >
                         {curr}

@@ -9,11 +9,11 @@ const TICKER_ITEMS = [
 ];
 
 const MarqueeTicker: React.FC = () => {
-  const renderItemSequence = (keyPrefix: string) => (
-    <div key={keyPrefix} className="inline-flex items-center shrink-0">
+  const renderItemSequence = (key: string) => (
+    <div key={key} className="flex shrink-0 items-center gap-8 px-4">
       {TICKER_ITEMS.map((item, index) => (
-        <React.Fragment key={`${keyPrefix}-${index}`}>
-          <span className="px-5 whitespace-nowrap">{item}</span>
+        <React.Fragment key={`${key}-${index}`}>
+          <span className="whitespace-nowrap">{item}</span>
           <span className="text-[#D4AF6A] select-none text-xs">&bull;</span>
         </React.Fragment>
       ))}
@@ -24,12 +24,11 @@ const MarqueeTicker: React.FC = () => {
     <div
       role="region"
       aria-label="Announcements ticker"
-      className="relative w-full bg-[#141515] text-[#EAE8E1] border-b border-[#B86B43]/25 py-2.5 font-sans text-[11px] font-medium uppercase tracking-[0.18em] overflow-hidden flex items-center z-40 select-none"
+      className="relative w-full bg-[#141515] text-[#EAE8E1] border-b border-[#B86B43]/25 py-2.5 font-sans text-[11px] font-medium uppercase tracking-[0.18em] overflow-hidden whitespace-nowrap flex items-center z-40 select-none"
     >
       <div className="flex w-max animate-marquee hover:[animation-play-state:paused] cursor-default">
-        {renderItemSequence('seq-1')}
-        {renderItemSequence('seq-2')}
-        {renderItemSequence('seq-3')}
+        {renderItemSequence('track-1')}
+        {renderItemSequence('track-2')}
       </div>
     </div>
   );

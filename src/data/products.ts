@@ -15,11 +15,15 @@ export interface Product {
   speciesLatin: string;
   betaGlucans?: string;
   description: string;
+  shortDescription: string;
   descriptionRw: string;
   descriptionFr: string;
   formats: string[];
   isSubscribable: boolean;
   isFresh: boolean;
+  rating: number;
+  reviewCount: number;
+  badge?: string;
 }
 
 export const products: Product[] = [
@@ -40,11 +44,15 @@ export const products: Product[] = [
     speciesLatin: 'Hericium erinaceus',
     betaGlucans: '>32% Beta-Glucans',
     description: 'Cultivated at 2,400 meters in the volcanic mist of Kinigi on organic hardwood substrate. Our 100% pure fruiting body dual extract delivers verified concentrations of hericenones and erinacines to support nerve growth factor (NGF), cognitive clarity, and sustained mental focus without caffeine crash or jitters.',
+    shortDescription: 'Pure Kinigi fruiting body extract concentrated to ignite nerve growth factor and mental clarity.',
     descriptionRw: 'Yejejwe ku butumburuke bwa metero 2,400 mu gihu cy\'imisozi y\'ibirunga ya Kinigi. Uru rugero rwa 100% rw\'ibihumyo by\'umwimerere rufasha ubwonko gukora neza, kongera ubwenge no gushyira umutima ku murimo nta guhinda umushyitsi.',
     descriptionFr: 'Cultivé à 2 400 mètres d\'altitude dans les brumes volcaniques de Kinigi sur substrat de bois dur biologique. Notre double extrait pur à 100% de sporophores fournit une teneur certifiée en héricénones pour stimuler le facteur NGF, la mémoire et la clarté mentale durable sans nervosité.',
     formats: ['Powder 60g', 'Capsules 90ct'],
     isSubscribable: true,
     isFresh: false,
+    rating: 4.9,
+    reviewCount: 184,
+    badge: 'BESTSELLER',
   },
   {
     id: 2,
@@ -63,11 +71,15 @@ export const products: Product[] = [
     speciesLatin: 'Ganoderma lucidum',
     betaGlucans: '>35% Beta-Glucans + Triterpenes',
     description: 'The ancient "Mushroom of Immortality" grown on rich volcanic soils near Volcanoes National Park. Dual-extracted using pure mountain spring water and organic cane ethanol to liberate potent ganoderic acids and bioactive triterpenes that soothe the nervous system, lower cortisol, and cultivate deep restorative sleep.',
+    shortDescription: 'High-altitude red reishi dual extract formulated to soothe the nervous system and deepen REM sleep.',
     descriptionRw: 'Iki gihumyo kizwi kuva kera mu kuvura umunaniro no gutanga ituze rirambye, cyeze mu butaka bw\'ibirunga bya Musanze. Gifasha kugabanya umuhangayiko, kuringaniza imisemburo no guhesha ibitotsi byimbitse.',
     descriptionFr: 'Le champignon millénaire de la longévité cultivé sur les sols volcaniques riches du Parc National des Volcans. Double extraction à l\'eau de source et alcool de canne bio libérant acides ganodériques et triterpènes pour apaiser le système nerveux, réguler le cortisol et induire un sommeil réparateur.',
     formats: ['Dual-Extract Pouch 60g'],
     isSubscribable: true,
     isFresh: false,
+    rating: 4.9,
+    reviewCount: 142,
+    badge: '100% FRUITING BODY',
   },
   {
     id: 3,
@@ -86,11 +98,15 @@ export const products: Product[] = [
     speciesLatin: 'Ganoderma lucidum, Trametes versicolor, Grifola frondosa, Lentinula edodes, Inonotus obliquus',
     betaGlucans: '>30% Beta-Glucans',
     description: 'An elemental fortress of five master medicinal fungi: Highland Reishi, Wild Turkey Tail, Forest Maitake, High-Elevation Shiitake, and Wild Chaga. Formulated to modulate natural killer (NK) cell response, fortify mucosal gut defense, and deliver all-season cellular resilience.',
+    shortDescription: 'Synergistic shield of five master organic fungi offering potent full-spectrum cellular defense.',
     descriptionRw: 'Urugaga ruhuriweho n\'amoko atanu y\'ibihumyo bikomeye byo mu misozi ya Virunga. Bitanga imbaraga zo kurinda umubiri indwara, kongerera abasirikare b\'umubiri ingufu no kurinda utugingo ngengabuzima umunsi ku wundi.',
     descriptionFr: 'Une alliance souveraine de cinq champignons médicinaux d\'élite : Reishi des Hauts Plateaux, Queue de Dindon Sauvage, Maïtaké des Forêts, Shiitaké de Montagne et Chaga Boréal. Conçu pour stimuler les cellules tueuses naturelles (NK) et fortifier l\'immunité cellulaire en toutes saisons.',
     formats: ['Extract Powder 60g', 'Capsules 90ct'],
     isSubscribable: true,
     isFresh: false,
+    rating: 5.0,
+    reviewCount: 119,
+    badge: '100% FRUITING BODY',
   },
   {
     id: 4,
@@ -109,11 +125,15 @@ export const products: Product[] = [
     speciesLatin: 'Cordyceps militaris & Theobroma cacao',
     betaGlucans: '>25% Beta-Glucans + Cordycepin',
     description: 'Artisanal single-origin 75% Rwandan dark chocolate infused with pure Cordyceps militaris fruiting body extract. Maximizes cellular ATP production and VO2 max oxygen uptake while delivering rich theobromine warmth for unshakeable stamina and physical vitality.',
+    shortDescription: 'Single-estate 75% dark chocolate infused with pure Cordyceps to maximize cellular oxygenation.',
     descriptionRw: 'Tsikola y\'umukara ya 75% yaturutse mu kinyamisogwe cy\'u Rwanda yivanze n\'agashya ka Cordyceps militaris. Itanga imbaraga z\'umubiri, yongera umwuka wa ogisijeni mu maraso no gukomera ku murimo utarambiwe.',
     descriptionFr: 'Chocolat noir grand cru 75% du terroir rwandais infusé d\'extrait pur de Cordyceps militaris. Stimule la production cellulaire d\'ATP et la capacité respiratoire VO2 max pour une endurance athlétique remarquable et une vitalité propre et tonique.',
     formats: ['12 Ritual Squares'],
     isSubscribable: true,
     isFresh: false,
+    rating: 4.9,
+    reviewCount: 163,
+    badge: 'BESTSELLER',
   },
   {
     id: 5,
@@ -132,11 +152,15 @@ export const products: Product[] = [
     speciesLatin: 'Pleurotus ostreatus',
     betaGlucans: '>18% Beta-Glucans',
     description: 'Silken, delicate fluted caps harvested daily at dawn from volcanic bamboo mist rooms in Kinigi. Exceptionally tender with mild anise and sweet forest notes, perfect for quick flash-sautéing with garlic butter, braising in coconut cream, or tossing into fresh highland pasta.',
+    shortDescription: 'Delicate fluted caps harvested daily at dawn from volcanic mist rooms with mild anise notes.',
     descriptionRw: 'Ibihumyo byo kurya byorohereye kandi biryoshye cyane, biterurwa buri gitondo mu nzu z\'umwuka za Kinigi. Biryohera cyane igihe bikaranze mu mavuta y\'inka cyangwa bicaniwe mu biryo by\'umuryango.',
     descriptionFr: 'Chapeaux soyeux et délicatement festonnés récoltés à l\'aube dans nos serres brumeuses de Kinigi. Texture fondante aux notes légères d\'anis et de sous-bois, sublimes sautés au beurre clarifié et à l\'ail frais ou braisés dans une crème onctueuse.',
     formats: ['Fresh Punnet 500g', 'Dried Pouch 100g'],
     isSubscribable: false,
     isFresh: true,
+    rating: 4.8,
+    reviewCount: 94,
+    badge: "CHEF'S RESERVE",
   },
   {
     id: 6,
@@ -155,11 +179,15 @@ export const products: Product[] = [
     speciesLatin: 'Agaricus bisporus',
     betaGlucans: '>15% Beta-Glucans',
     description: 'Dense, firm volcanic earth Agaricus cultivated on nutrient-dense composted straw. Yields an earthy, nutty profile that deepens substantially upon pan-roasting. A foundational staple in Kigali fine dining and kitchen bistros.',
+    shortDescription: 'Dense volcanic earth Agaricus yielding rich nutty depth for Kigali bistro sautés and broths.',
     descriptionRw: 'Ibihumyo bikomeye by\'ubutaka bwiza bwa Musanze. Bifite uburyohe bwinshi butuje, binoze cyane mu gushyushya mu ifuru, gukora isosi y\'isupu, no gutegurira abatumiwe bakomeye.',
     descriptionFr: 'Champignons crémini et blancs denses et fermes, cultivés sur compost enrichi des terres fertiles de Musanze. Profil boisé et noiseté remarquable qui se caramélise à la perfection à la poêle. Le favori des grands chefs de Kigali.',
     formats: ["Fresh Chef's Box 500g"],
     isSubscribable: false,
     isFresh: true,
+    rating: 4.9,
+    reviewCount: 108,
+    badge: "CHEF'S RESERVE",
   },
   {
     id: 7,
@@ -178,11 +206,15 @@ export const products: Product[] = [
     speciesLatin: 'Lentinula edodes',
     betaGlucans: '>22% Beta-Glucans',
     description: 'Thick, cracked Donko caps grown on indigenous highland hardwood logs under high-humidity forest canopy. Bursting with deep savory glutamate umami, ideal for ramen broths, slow stews, and caramelized mushroom reductions.',
+    shortDescription: 'Hardwood-grown Donko caps with cracked crowns delivering concentrated savory glutamate umami.',
     descriptionRw: 'Ibihumyo bya Shiitake byakuriye ku biti by\'ingano mu mashyamba ya Virunga. Bifite umunyu w\'umwimerere (umami) n\'impumuro nziza cyane mu masupu y\'akataraboneka.',
     descriptionFr: 'Chapeaux épais craquelés de type Donko, cultivés sur billots de bois dur indigène sous la canopée humide des Virunga. Explosion d\'umami naturel riche en glutamates, idéal pour les bouillons profonds, ragoûts lents et réductions gastronomiques.',
     formats: ['Fresh 250g', 'Sun-Dried Donko Caps 100g'],
     isSubscribable: false,
     isFresh: true,
+    rating: 5.0,
+    reviewCount: 76,
+    badge: "CHEF'S RESERVE",
   },
   {
     id: 8,
@@ -201,11 +233,15 @@ export const products: Product[] = [
     speciesLatin: 'Pleurotus citrinopileatus',
     betaGlucans: '>19% Beta-Glucans',
     description: 'Spectacular bright golden-yellow clusters with vibrant trumpet petals. Offers a delicate aroma reminiscent of roasted cashews and aged rind when seared crisp in hot olive oil or ghee. A showstopping visual on any culinary plating.',
+    shortDescription: 'Bright golden clusters offering delicate roasted cashew aroma when seared crisp in hot ghee.',
     descriptionRw: 'Ibihumyo bisa n\'izahabu irabagirana byerera mu gihu cya Kinigi. Iyo bikanzwe neza mu mavuta biba nk\'ubunyobwa bukaranze, bifite isura nziza cyane ku meza.',
     descriptionFr: 'Grappes spectaculaires d\'un jaune d\'or lumineux aux pétales festonnés. Dévoilent des notes délicates de noix de cajou grillées lorsqu\'elles sont saisies croustillantes au beurre noisette. Une merveille visuelle pour la haute gastronomie.',
     formats: ['Fresh Bouquet 400g', 'Dried 80g'],
     isSubscribable: false,
     isFresh: true,
+    rating: 4.9,
+    reviewCount: 62,
+    badge: "CHEF'S RESERVE",
   },
   {
     id: 9,
@@ -224,11 +260,15 @@ export const products: Product[] = [
     speciesLatin: 'Pleurotus eryngii',
     betaGlucans: '>20% Beta-Glucans',
     description: 'Majestic thick-stemmed King Trumpets boasting a dense, meaty consistency comparable to ocean scallops or tender filet. Rich in ergothioneine and natural umami, crosshatched and pan-seared in brown butter to achieve supreme golden caramelization.',
+    shortDescription: 'Thick meaty stems with a scallop-like bite, ideal for caramelizing in mountain herbs and butter.',
     descriptionRw: 'Ibihumyo by\'ibitangaza bifite umubiri munini ukomeye nk\'inyama nziza cyangwa amafi y\'agaciro. Biryoha bidasanzwe iyo bikaranze neza bitukuye mu mavuta.',
     descriptionFr: 'Pleurotes royaux majestueux au pied charnu et dense, offrant une texture incomparable semblable à celle des coquilles Saint-Jacques. Idéal incisé en croisillons et poêlé au beurre noisette pour une caramélisation dorée parfaite.',
     formats: ["Chef's Reserve Box 500g"],
     isSubscribable: false,
     isFresh: true,
+    rating: 5.0,
+    reviewCount: 81,
+    badge: "CHEF'S RESERVE",
   },
   {
     id: 10,
@@ -247,11 +287,15 @@ export const products: Product[] = [
     speciesLatin: 'Termitomyces microcarpus / letestui',
     betaGlucans: '>24% Beta-Glucans',
     description: 'The prized crown of Rwandan wild mycology. Foraged sustainably from macroterme termite mounds across the Northern and Western ridges during the seasonal rains, then immediately sun-cured. Imparts an intensely sweet, earthy essence treasured in Rwandan cultural heritage for generations.',
+    shortDescription: 'Wild sacred termite mound fungi sun-cured to preserve an intensely sweet, earthy heritage aroma.',
     descriptionRw: 'Ibihumyo by\'akataraboneka bya kavukire bimeza ku binyamugina by\'intozi mu gihe cy\'imvura. Byasoromywe n\'inzobere z\'ababyeyi b\'i Musanze bisukuye ku zuba. Bifite uburyohe gakondo bwihariye kandi bw\'agaciro gakomeye.',
     descriptionFr: 'Le joyau absolu de la mycologie sauvage rwandaise. Récolté de façon durable sur les termitières des crêtes du Nord pendant la saison des pluies, puis séché au soleil doux. Développe une saveur intensément sucrée et boisée vénérée dans le patrimoine culinaire rwandais.',
     formats: ['Sun-Dried Reserve 150g'],
     isSubscribable: false,
     isFresh: false,
+    rating: 5.0,
+    reviewCount: 47,
+    badge: 'SEASONAL FORAGE',
   },
   {
     id: 11,
@@ -270,11 +314,15 @@ export const products: Product[] = [
     speciesLatin: 'Auricularia auricula-judae',
     betaGlucans: '>21% Beta-Glucans',
     description: 'Lobed, velvety gelatinous wild fronds that flourish on decaying elder and hardwood logs in the Virunga sub-alpine cloud forest. Prized for its signature snap and gelatinous crunch, absorbing complex spices, broths, and hot ginger vinaigrettes.',
+    shortDescription: 'Lobed cloud forest fronds celebrated for their signature snap and rich broth-absorbing crunch.',
     descriptionRw: 'Ibihumyo bimeze nk\'amatwi biba ku biti byo mu mashyamba akonje ya Virunga. Bifite umwihariko wo guhekenya neza no kunywa amazi n\'ibirungo byose bibicaniwemo.',
     descriptionFr: 'Frondes gélatineuses et veloutées poussant sur les troncs centenaires de la forêt de nuages des Virunga. Célébrées pour leur croquant cartilagineux inimitable qui s\'imprègne délicatement des bouillons parfumés, sauces au gingembre et épices vives.',
     formats: ['Sun-Dried 150g', 'Fresh Fronds 250g'],
     isSubscribable: false,
     isFresh: true,
+    rating: 4.8,
+    reviewCount: 53,
+    badge: 'SEASONAL FORAGE',
   },
   {
     id: 12,
@@ -293,11 +341,15 @@ export const products: Product[] = [
     speciesLatin: 'Pleurotus & Lentinula Trio',
     betaGlucans: '>20% Beta-Glucans',
     description: "The ultimate culinary showcase for discerning Kigali home cooks and chefs. Packed fresh at dawn inside an insulated banana leaf crate with ice packs, delivering a generous 1.5kg combination of plump Pearl Oysters, golden trumpet bouquets, and cracked hardwood Shiitakes.",
+    shortDescription: 'A 1.5kg dawn assortment of pearl, golden, king trumpet and shiitake mushrooms packed fresh daily.',
     descriptionRw: "Agaseke k'indashyikirwa k'ibihumyo byatoranijwe mu gitondo cy'akazuba gasheke. Karimo ibihumyo bitandukanye bishyitse byo gutegura amafunguro aryoshye cyane.",
     descriptionFr: "Le coffret d'exception des grands chefs de Kigali. Récolté à l'aube et conditionné dans une caisse isotherme traditionnelle, offrant 1,5 kg de pleurotes perlés, pleurotes dorés et shiitakés charnus.",
     formats: ["Chef's Selection Crate 1.5kg"],
     isSubscribable: false,
     isFresh: true,
+    rating: 5.0,
+    reviewCount: 38,
+    badge: "CHEF'S RESERVE",
   },
 ];
 

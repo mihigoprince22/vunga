@@ -120,6 +120,7 @@ const Origin = () => {
       <section
         ref={heroRef}
         className="relative min-h-[95vh] flex flex-col justify-end overflow-hidden bg-volcanic-deep text-kinigi-mist pb-24 pt-32"
+        style={{ backgroundImage: 'url(/assets/03_home-hero-idle-16x9_4K.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}
       >
         {/* Full-width Parallax Background Image */}
         <motion.div
